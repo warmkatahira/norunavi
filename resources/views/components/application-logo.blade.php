@@ -1,0 +1,1 @@
+<img src="{{ asset('image/welcome.png') }}" class="inline-block w-full md:w-72">

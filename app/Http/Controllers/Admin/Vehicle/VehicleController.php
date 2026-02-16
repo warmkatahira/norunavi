@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Vehicle;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+// モデル
+use App\Models\VehicleType;
+use App\Models\VehicleCategory;
+// 列挙
+use App\Enums\VehicleEnum;
+// サービス
+use App\Services\Admin\Vehicle\VehicleSearchService;
+// トレイト
+use App\Traits\PaginatesResultsTrait;
+
+class VehicleController extends Controller
+{
+    use PaginatesResultsTrait;
+
+    public function index(Request $request)
+    {
+        // ページヘッダーをセッションに格納
+        session(['page_header' => '車両']);
+        // インスタンス化
+        $VehicleSearchService = new VehicleSearchService;
+        // セッションを削除
+        $VehicleSearchService->deleteSession();
+        // セッションに検索条件を格納
+        $VehicleSearchService->setSearchCondition($request);
+        // 検索結果を取得
+        $result = $VehicleSearchService->getSearchResult();
+        // ページネーションを実施
+        $vehicles = $this->setPagination($result);
+        // 車両区分を取得
+        $vehicle_types = VehicleType::ordered()->get();
+        // 車両種別を取得
+        $vehicle_categories = VehicleCategory::ordered()->get();
+        // 定員の検索条件を取得
+        $vehicle_capacity_conditions = VehicleEnum::VEHICLE_CAPACITY_CONDITION_LIST;
+        return view('admin.vehicle.index')->with([
+            'vehicles' => $vehicles,
+            'vehicle_types' => $vehicle_types,
+            'vehicle_categories' => $vehicle_categories,
+            'vehicle_capacity_conditions' => $vehicle_capacity_conditions,
+        ]);
+    }
+}

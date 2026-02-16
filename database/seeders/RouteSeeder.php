@@ -1,0 +1,122 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+// モデル
+use App\Models\Route;
+use App\Models\RouteDetail;
+use App\Models\BoardingLocation;
+
+class RouteSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        Route::create([
+            'route_name'            => '朝一番便',
+            'vehicle_category_id'   => 1,
+            'route_type_id'         => 1,
+            'is_active'             => 1,
+            'sort_order'            => 1,
+        ]);
+        RouteDetail::create([
+            'route_id'              => 1,
+            'boarding_location_id'  => 4,
+            'stop_order'            => 1,
+            'departure_time'        => '08:45',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 1,
+            'boarding_location_id'  => 5,
+            'stop_order'            => 2,
+            'arrival_time'          => '08:50',
+            'departure_time'        => '08:51',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 1,
+            'boarding_location_id'  => 2,
+            'stop_order'            => 3,
+            'arrival_time'          => '08:54',
+            'departure_time'        => '08:55',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 1,
+            'boarding_location_id'  => 1,
+            'stop_order'            => 4,
+            'arrival_time'          => '09:10',
+        ]);
+
+        Route::create([
+            'route_name'            => '朝二番便',
+            'vehicle_category_id'   => 1,
+            'route_type_id'         => 1,
+            'is_active'             => 1,
+            'sort_order'            => 2,
+        ]);
+        RouteDetail::create([
+            'route_id'              => 2,
+            'boarding_location_id'  => 4,
+            'stop_order'            => 1,
+            'departure_time'        => '09:45',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 2,
+            'boarding_location_id'  => 5,
+            'stop_order'            => 2,
+            'arrival_time'          => '09:50',
+            'departure_time'        => '09:51',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 2,
+            'boarding_location_id'  => 2,
+            'stop_order'            => 3,
+            'arrival_time'          => '09:54',
+            'departure_time'        => '09:55',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 2,
+            'boarding_location_id'  => 1,
+            'stop_order'            => 4,
+            'arrival_time'          => '10:10',
+        ]);
+
+        Route::create([
+            'route_name'            => '社員送迎(18時便)',
+            'vehicle_category_id'   => 2,
+            'route_type_id'         => 2,
+            'is_active'             => 1,
+            'sort_order'            => 3,
+        ]);
+        RouteDetail::create([
+            'route_id'              => 3,
+            'boarding_location_id'  => 1,
+            'stop_order'            => 1,
+            'departure_time'        => '18:05',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 3,
+            'boarding_location_id'  => 2,
+            'stop_order'            => 2,
+            'arrival_time'          => '18:20',
+            'departure_time'        => '18:21',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 3,
+            'boarding_location_id'  => 5,
+            'stop_order'            => 3,
+            'arrival_time'          => '18:24',
+            'departure_time'        => '18:25',
+        ]);
+        RouteDetail::create([
+            'route_id'              => 3,
+            'boarding_location_id'  => 4,
+            'stop_order'            => 4,
+            'arrival_time'          => '18:35',
+        ]);
+
+    }
+}

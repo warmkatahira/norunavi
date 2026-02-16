@@ -1,0 +1,110 @@
+<div class="disable_scrollbar flex flex-grow overflow-scroll">
+    <div class="route_list bg-white overflow-x-auto overflow-y-auto border border-gray-600">
+        <table class="text-xs">
+            <thead>
+                <tr class="text-left text-white bg-black whitespace-nowrap sticky top-0">
+                    <th class="font-thin py-1 px-2 text-center">操作</th>
+                    <th class="font-thin py-1 px-2 text-center">利用可否</th>
+                    <th class="font-thin py-1 px-2 text-center">ルート区分</th>
+                    <th class="font-thin py-1 px-2 text-center">車両種別</th>
+                    <th class="font-thin py-1 px-2 text-center">ルート名</th>
+                    <th class="font-thin py-1 px-2 text-center">乗降場所数</th>
+                    <th class="font-thin py-1 px-2 text-center">並び順</th>
+                    <th class="font-thin py-1 px-2 text-center">最終更新日時</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                @foreach($routes as $route)
+                    <tr class="text-left cursor-default whitespace-nowrap hover:bg-theme-sub group @if(!$route->is_active) bg-common-disabled @endif">
+                        <td class="py-1 px-2 border">
+                            <div class="flex flex-row gap-5">
+                                <button type="button" class="btn route_toggle_components_btn bg-btn-open text-white py-1 px-2">ルート詳細を表示</button>
+                                <div class="dropdown-operation">
+                                    <button class="dropdown-operation-btn"><i class="las la-ellipsis-v la-lg"></i></button>
+                                    <div class="dropdown-operation-content">
+                                        <a href="{{ route('route_update.index', ['route_id' => $route->route_id]) }}" class="dropdown-operation-content-element"><i class="las la-edit la-lg mr-1"></i>ルートを更新</a>
+                                        <a href="{{ route('route_detail_update.index', ['route_id' => $route->route_id]) }}" class="dropdown-operation-content-element"><i class="las la-edit la-lg mr-1"></i>ルート詳細を更新</a>
+                                        <button type="button" class="dropdown-operation-content-element route_copy_enter" data-route-id="{{ $route->route_id }}"><i class="las la-copy la-lg mr-1"></i>複製</button>
+                                        <button type="button" class="dropdown-operation-content-element route_delete_enter" data-route-id="{{ $route->route_id }}"><i class="las la-trash la-lg mr-1"></i>削除</button>
+                                        <a href="{{ route('ride_schedule_create.index', ['route_id' => $route->route_id]) }}" class="dropdown-operation-content-element"><i class="las la-plus la-lg mr-1"></i>送迎予定を追加</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-1 px-2 border text-center">
+                            <x-list.status :value="$route->is_active" label1="利用可" label0="利用不可" />
+                        </td>
+                        <td class="py-1 px-2 border text-center">{{ $route->route_type->route_type }}</td>
+                        <td class="py-1 px-2 border text-center">{{ $route->vehicle_category->vehicle_category }}</td>
+                        <td class="py-1 px-2 border route_name">{{ $route->route_name }}</td>
+                        <td class="py-1 px-2 border text-right">{{ number_format($route->route_details->count()) }}</td>
+                        <td class="py-1 px-2 border text-right">{{ number_format($route->sort_order) }}</td>
+                        <td class="py-1 px-2 border">{{ CarbonImmutable::parse($route->updated_at)->isoFormat('YYYY年MM月DD日(ddd) HH時mm分ss秒').'('.CarbonImmutable::parse($route->updated_at)->diffForHumans().')' }}</td>
+                    </tr>
+                    <tr class="route_detail_components hidden">
+                        <td colspan="5" class="p-0">
+                            <div class="inline-block">
+                                <table class="text-xs border border-gray-300 mb-3">
+                                    <thead>
+                                        <tr class="text-left bg-black text-white">
+                                            <th class="font-thin py-1 px-2 border border-black text-center">場所名</th>
+                                            <th class="font-thin py-1 px-2 border border-black text-center">場所名メモ</th>
+                                            <th class="font-thin py-1 px-2 border border-black text-center">停車順番</th>
+                                            <th class="font-thin py-1 px-2 border border-black text-center">着 → 発</th>
+                                            <th class="font-thin py-1 px-2 border border-black text-center">次の地点まで</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        @foreach($route->route_details as $route_detail)
+                                            @php
+                                                // 出発時刻を取得
+                                                $dep = $route_detail->departure_time ? CarbonImmutable::parse($route_detail->departure_time)->format('H:i') : null;
+                                                // 到着時刻を取得
+                                                $arr = $route_detail->arrival_time ? CarbonImmutable::parse($route_detail->arrival_time)->format('H:i') : null;
+                                            @endphp
+                                            <tr class="hover:bg-theme-sub">
+                                                <td class="py-1 px-2 border border-black">{{ $route_detail->boarding_location->location_name }}</td>
+                                                <td class="py-1 px-2 border border-black">{{ $route_detail->boarding_location->location_memo }}</td>
+                                                <td class="py-1 px-2 border border-black text-right">{{ $route_detail->stop_order }}</td>
+                                                <td class="py-1 px-2 border border-black text-center">
+                                                    @if($arr && $dep)
+                                                        <span class="text-orange-700 font-medium">{{ $arr }} 着</span>
+                                                        <span class="mx-1">→</span>
+                                                        <span class="text-blue-700 font-medium">{{ $dep }} 発</span>
+                                                    @elseif($arr)
+                                                        <span class="text-orange-700 font-medium">{{ $arr }} 着</span>
+                                                    @elseif($dep)
+                                                        <span class="text-blue-700 font-medium">{{ $dep }} 発</span>
+                                                    @else
+                                                        <span class="text-gray-400">—</span>
+                                                    @endif
+                                                </td>
+                                                <td class="py-1 px-2 border border-black text-center">
+                                                    @if($route_detail->required_minutes !== null)
+                                                        <span class="inline-flex justify-center items-center bg-blue-100 text-blue-700 border border-blue-400 rounded px-2 py-0.5 text-xs w-12 tabular-nums">
+                                                            {{ $route_detail->required_minutes }} 分
+                                                        </span>
+                                                    @else
+                                                        <span class="text-gray-400">—</span>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<form method="POST" action="{{ route('route_delete.delete') }}" id="route_delete_form" class="hidden">
+    @csrf
+    <input type="hidden" id="route_id_at_delete" name="route_id">
+</form>
+<form method="POST" action="{{ route('route_copy.copy') }}" id="route_copy_form" class="hidden">
+    @csrf
+    <input type="hidden" id="route_id_at_copy" name="route_id">
+</form>

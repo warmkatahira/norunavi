@@ -1,0 +1,187 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-C3FoxOp2.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/admin/boarding_location/boarding_location.js": {
+    "file": "assets/boarding_location-CCIcCVUh.js",
+    "name": "boarding_location",
+    "src": "resources/js/admin/boarding_location/boarding_location.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/admin/route/route.js": {
+    "file": "assets/route-BgLz8NXl.js",
+    "name": "route",
+    "src": "resources/js/admin/route/route.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/admin/route_detail/route_detail.js": {
+    "file": "assets/route_detail-BggDOdbI.js",
+    "name": "route_detail",
+    "src": "resources/js/admin/route_detail/route_detail.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/admin/vehicle/vehicle.js": {
+    "file": "assets/vehicle-B-Qx-4_R.js",
+    "name": "vehicle",
+    "src": "resources/js/admin/vehicle/vehicle.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-DiPva9d7.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-BsM4JrO0.css"
+    ]
+  },
+  "resources/js/auth/register.js": {
+    "file": "assets/register-CUv0HFxH.js",
+    "name": "register",
+    "src": "resources/js/auth/register.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/common.js": {
+    "file": "assets/common-DYSTgVaS.js",
+    "name": "common",
+    "src": "resources/js/common.js",
+    "isEntry": true
+  },
+  "resources/js/dashboard/dashboard.js": {
+    "file": "assets/dashboard-DTOBqceZ.js",
+    "name": "dashboard",
+    "src": "resources/js/dashboard/dashboard.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/dropdown.js": {
+    "file": "assets/dropdown-BEc7wMJu.js",
+    "name": "dropdown",
+    "src": "resources/js/dropdown.js",
+    "isEntry": true
+  },
+  "resources/js/file_select.js": {
+    "file": "assets/file_select-B3EGlKGR.js",
+    "name": "file_select",
+    "src": "resources/js/file_select.js",
+    "isEntry": true
+  },
+  "resources/js/image_fade_in.js": {
+    "file": "assets/image_fade_in-BEYib6UT.js",
+    "name": "image_fade_in",
+    "src": "resources/js/image_fade_in.js",
+    "isEntry": true
+  },
+  "resources/js/loading.js": {
+    "file": "assets/loading-CLXJ3Lsj.js",
+    "name": "loading",
+    "src": "resources/js/loading.js",
+    "isEntry": true
+  },
+  "resources/js/profile/profile.js": {
+    "file": "assets/profile-TtJZyZEj.js",
+    "name": "profile",
+    "src": "resources/js/profile/profile.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/ride/ride_schedule/ride_schedule.js": {
+    "file": "assets/ride_schedule-DhR8nq6L.js",
+    "name": "ride_schedule",
+    "src": "resources/js/ride/ride_schedule/ride_schedule.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/search.js": {
+    "file": "assets/search-CDUhy24g.js",
+    "name": "search",
+    "src": "resources/js/search.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/js/search_date.js": {
+    "file": "assets/search_date-BYztu-sO.js",
+    "name": "search_date",
+    "src": "resources/js/search_date.js",
+    "isEntry": true
+  },
+  "resources/js/system_admin/user/user.js": {
+    "file": "assets/user-B-UMQN71.js",
+    "name": "user",
+    "src": "resources/js/system_admin/user/user.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/loading.js"
+    ]
+  },
+  "resources/sass/common.scss": {
+    "file": "assets/common-C_Ek5JKF.css",
+    "src": "resources/sass/common.scss",
+    "isEntry": true
+  },
+  "resources/sass/dropdown.scss": {
+    "file": "assets/dropdown-BwKLfFdC.css",
+    "src": "resources/sass/dropdown.scss",
+    "isEntry": true
+  },
+  "resources/sass/height_adjustment.scss": {
+    "file": "assets/height_adjustment-Cf8z4XGT.css",
+    "src": "resources/sass/height_adjustment.scss",
+    "isEntry": true
+  },
+  "resources/sass/loading.scss": {
+    "file": "assets/loading-CSRlsW_J.css",
+    "src": "resources/sass/loading.scss",
+    "isEntry": true
+  },
+  "resources/sass/navigation.scss": {
+    "file": "assets/navigation-WT1t7SEe.css",
+    "src": "resources/sass/navigation.scss",
+    "isEntry": true
+  },
+  "resources/sass/profile/profile.scss": {
+    "file": "assets/profile-sn2S9o_Z.css",
+    "src": "resources/sass/profile/profile.scss",
+    "isEntry": true
+  },
+  "resources/sass/profile/profile_image.scss": {
+    "file": "assets/profile_image-DRJ8DOA0.css",
+    "src": "resources/sass/profile/profile_image.scss",
+    "isEntry": true
+  },
+  "resources/sass/theme.scss": {
+    "file": "assets/theme-Amz1Pgxh.css",
+    "src": "resources/sass/theme.scss",
+    "isEntry": true
+  },
+  "resources/sass/welcome.scss": {
+    "file": "assets/welcome-BMzhljxz.css",
+    "src": "resources/sass/welcome.scss",
+    "isEntry": true
+  }
+}

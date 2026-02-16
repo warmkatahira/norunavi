@@ -1,0 +1,87 @@
+<div id="navigation-bar">
+    <div id="navigation_top_div" class="flex flex-col sticky top-0 z-[999] bg-theme-sub">
+        <!-- ロゴ -->
+        <img id="logo" src="{{ asset('image/norunavi_logo_horizontal.svg') }}">
+    </div>
+    <div class="flex flex-col gap-3 pt-7 pl-5">
+        <!-- ダッシュボード -->
+        <x-navigation-btn route="dashboard.index" label="ダッシュボード" icon="las la-home" isRightMargin="true" />
+        @can('admin_check')
+            <!-- 送迎 -->
+             <div class="flex flex-col gap-0.5">
+                <x-navigation-btn label="送迎" icon="las la-bus" openCloseKey="system_admin" />
+                <div class="navigation-content hidden">
+                    <x-navigation-btn route="ride_schedule.index" label="送迎予定" isLeftMargin="true" isRightMargin="true" />
+                </div>
+            </div>
+        @endcan
+        @can('admin_check')
+            <!-- 管理 -->
+             <div class="flex flex-col gap-0.5">
+                <x-navigation-btn label="管理" icon="las la-users-cog" openCloseKey="system_admin" />
+                <div class="navigation-content hidden">
+                    <x-navigation-btn route="vehicle.index" label="車両" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="boarding_location.index" label="乗降場所" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="route.index" label="ルート" isLeftMargin="true" isRightMargin="true" />
+                </div>
+            </div>
+        @endcan
+        @can('system_admin_check')
+            <!-- システム管理 -->
+             <div class="flex flex-col gap-0.5">
+                <x-navigation-btn label="システム管理" icon="las la-robot" openCloseKey="system_admin" />
+                <div class="navigation-content hidden">
+                    <x-navigation-btn route="role.index" label="権限" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="user.index" label="ユーザー" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="vehicle_type.index" label="車両区分" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="vehicle_category.index" label="車両種別" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="route_type.index" label="ルート区分" isLeftMargin="true" isRightMargin="true" />
+                    <x-navigation-btn route="operation_log.index" label="操作ログ" isLeftMargin="true" isRightMargin="true" />
+                </div>
+            </div>
+        @endcan
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const nav = document.getElementById('navigation-bar');
+        const navScrollPosition = 'navScrollPosition';
+        // ページを離れる前にスクロール位置を保存
+        window.addEventListener('beforeunload', () => {
+            localStorage.setItem(navScrollPosition, nav.scrollTop);
+        });
+        // ページロード後にスクロール位置を復元
+        const saved = localStorage.getItem(navScrollPosition);
+        if(saved !== null){
+            nav.scrollTop = saved;
+        }
+    });
+    const navOpenStates = 'navOpenStates';
+    // ページ読み込み時：保存されている開閉状態を復元
+    const openStates = JSON.parse(localStorage.getItem(navOpenStates)) || {};
+    for(const key in openStates){
+        if(openStates[key]){
+            const $section = $(`.navigation-open-close[data-open-close-key="${key}"]`);
+            const $content = $section.closest('.navigation-btn-div').next('.navigation-content');
+            const $arrow = $section.find('.arrow');
+
+            $content.removeClass('hidden');
+            $arrow.addClass('open');
+        }
+    }
+    // クリック時
+    $('.navigation-open-close').on('click', function() {
+        // 要素を取得
+        const $content = $(this).closest('.navigation-btn-div').next('.navigation-content');
+        const $arrow = $(this).find('.arrow');
+        const key = $(this).data('open-close-key');
+        // クラスの付け外し
+        $content.toggleClass('hidden');
+        $arrow.toggleClass('open');
+        // 現在の開閉状態を保存
+        const updatedStates = JSON.parse(localStorage.getItem(navOpenStates)) || {};
+        updatedStates[key] = !$content.hasClass('hidden');
+        localStorage.setItem(navOpenStates, JSON.stringify(updatedStates));
+    });
+</script>
