@@ -65,7 +65,7 @@
     "isEntry": true
   },
   "resources/js/dashboard/dashboard.js": {
-    "file": "assets/dashboard-DTOBqceZ.js",
+    "file": "assets/dashboard-BHJpoouF.js",
     "name": "dashboard",
     "src": "resources/js/dashboard/dashboard.js",
     "isEntry": true,
@@ -138,6 +138,12 @@
     "imports": [
       "resources/js/loading.js"
     ]
+  },
+  "resources/js/toggle_component.js": {
+    "file": "assets/toggle_component-B2ne8KOh.js",
+    "name": "toggle_component",
+    "src": "resources/js/toggle_component.js",
+    "isEntry": true
   },
   "resources/sass/common.scss": {
     "file": "assets/common-C_Ek5JKF.css",
