@@ -180,15 +180,13 @@ function create_ride_schedule_select(route_type_id, ride_id, join_ride_detail_id
 
                     $('#selected_ride_detail_id').val(join_ride_detail_id);
 
-                    // まず全て通常状態
+                    $(`.select-row[data-id="${join_ride_detail_id}"]`).trigger('click');
+
+                    
+                }else{
                     $('.select-row')
                         .removeClass('bg-theme-sub')
                         .addClass('bg-white');
-
-                    // 選択状態
-                    $(`.select-row[data-id="${join_ride_detail_id}"]`)
-                        .removeClass('bg-white')
-                        .addClass('bg-theme-sub');
                 }
             } catch (e) {
             }
