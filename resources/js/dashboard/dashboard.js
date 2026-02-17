@@ -148,7 +148,7 @@ function create_ride_schedule_select(route_type_id, ride_id, join_ride_detail_id
                     */
 
                     let cardClass = canSelect
-                                        ? 'w-full select-row ride-card border rounded-xl p-3 shadow-sm hover:bg-theme-sub cursor-pointer'
+                                        ? 'w-full select-row ride-card border rounded-xl p-3 shadow-sm cursor-pointer'
                                         : 'w-full ride-card border rounded-xl p-3 shadow-sm bg-gray-100 text-gray-400 cursor-not-allowed';
 
                     let $card = $(`
