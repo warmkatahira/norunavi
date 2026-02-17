@@ -21,7 +21,7 @@
 <button type="button" data-ride-id="{{ $ride->ride_id }}" data-route-type-id="{{ $ride->route_type_id }}" data-join-ride-detail-id="{{ $joinedRideDetail->ride_detail_id ?? '' }}" class="{{ $btn_bg }} col-span-12 xl:col-span-3 ride_schedule_select_modal_open shadow-md rounded-md py-3 pl-3 pr-5 hover:bg-theme-sub hover:text-black group">
     <div class="flex flex-row justify-start items-center">
         @if($joinedRideDetail)
-            <i class="las la-star text-yellow-400 group-hover:text-pink-500 mr-1 relative -top-0.5"></i>
+            <i class="las la-star text-yellow-400 group-hover:text-pink-500 mr-1 relative -top-0.7"></i>
         @endif
         {{ $ride->route_name }}
     </div>
@@ -33,7 +33,7 @@
                     {{ CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発' }}
                 </div>
                 <div class="flex items-center justify-start w-1/2">
-                    <i class="las la-map-pin mr-1 relative -top-0.5"></i>
+                    <i class="las la-map-pin mr-1 relative -top-0.7"></i>
                     {{ $joinedRideDetail->location_name.' 降車' }}
                 </div>
             @else
@@ -43,7 +43,7 @@
                         {{ CarbonImmutable::parse($joinedRideDetail->departure_time)->format('H:i') . ' 発' }}
                     </div>
                     <div class="flex items-center justify-start w-1/2">
-                        <i class="las la-map-pin mr-1 relative -top-0.5"></i>
+                        <i class="las la-map-pin mr-1 relative -top-0.7"></i>
                         {{ $joinedRideDetail->location_name.' 乗車' }}
                     </div>
                 </div>
@@ -52,7 +52,7 @@
     @endif
     @if($ride->user)
         <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-            <i class="las la-car-side mr-1 relative -top-0.5"></i>{{ $ride->user->full_name }}
+            <i class="las la-car-side mr-1 relative -top-0.7"></i>{{ $ride->user->full_name }}
         </div>
     @endif
 </button>
