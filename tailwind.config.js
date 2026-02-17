@@ -48,7 +48,8 @@ export default {
                 },
             },
             spacing: {
-                'modal-window'      : "700px",
+                'pc-modal-window'      : "700px",
+                'sp-modal-window'      : "70%",
             },
             width: {
                 '1/7'               : '14.2857143%',
