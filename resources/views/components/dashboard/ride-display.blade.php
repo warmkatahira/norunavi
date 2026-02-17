@@ -7,7 +7,7 @@
                     <span class="text-base font-semibold block my-2">行き</span>
                     <div class="grid grid-cols-12 pl-3 gap-5">
                         @foreach($rides[$date->toDateString()]->where('route_type_id', RouteTypeEnum::IKI) as $ride)
-                            <x-dashboard.ride-schedule :ride="$ride" />
+                            <x-dashboard.ride-schedule-btn-ride :ride="$ride" />
                         @endforeach
                     </div>
                 </div>
@@ -15,7 +15,7 @@
                     <span class="text-base font-semibold block my-2">帰り</span>
                     <div class="grid grid-cols-12 pl-3 gap-5">
                         @foreach($rides[$date->toDateString()]->where('route_type_id', RouteTypeEnum::KAERI) as $ride)
-                            <x-dashboard.ride-schedule :ride="$ride" />
+                            <x-dashboard.ride-schedule-btn-ride :ride="$ride" />
                         @endforeach
                     </div>
                 </div>

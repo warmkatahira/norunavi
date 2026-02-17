@@ -20,7 +20,7 @@
     @if($joinedRideDetail)
         <i class="las la-star text-yellow-400 group-hover:text-pink-500 la-lg"></i>
     @endif
-    {{ '【'.$ride->route_type->route_type.'】'.$ride->route_name }}
+    {{ $ride->route_name }}
     @if($joinedRideDetail)
         @if($ride->route_type_id == RouteTypeEnum::KAERI && $firstDeparture)
             {{ '【' . CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発】' }}
@@ -31,5 +31,9 @@
             <br>
             {{ $joinedRideDetail->location_name.' 乗車' }}
         @endif
+    @endif
+    @if($ride->user)
+        <br>
+        {{ $ride->user?->full_name }}
     @endif
 </button>

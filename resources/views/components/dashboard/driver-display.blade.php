@@ -2,20 +2,20 @@
     @foreach($dates as $date)
         <div class="border p-3 mb-2 bg-white shadow-md rounded-md">
             <div class="font-bold text-base">{{ CarbonImmutable::parse($date)->isoFormat('YYYY年MM月DD日(ddd)') }}</div>
-            @if(isset($rides[$date->toDateString()]))
+            @if(isset($myDriverRideSchedules[$date->toDateString()]))
                 <div>
                     <span class="text-base font-semibold block my-2">行き</span>
                     <div class="grid grid-cols-12 pl-3 gap-5">
-                        @foreach($rides[$date->toDateString()]->where('route_type_id', RouteTypeEnum::IKI) as $ride)
-                            <x-dashboard.ride-schedule :ride="$ride" />
+                        @foreach($myDriverRideSchedules[$date->toDateString()]->where('route_type_id', RouteTypeEnum::IKI) as $ride)
+                            <x-dashboard.ride-schedule-btn-driver :ride="$ride" />
                         @endforeach
                     </div>
                 </div>
                 <div>
                     <span class="text-base font-semibold block my-2">帰り</span>
                     <div class="grid grid-cols-12 pl-3 gap-5">
-                        @foreach($rides[$date->toDateString()]->where('route_type_id', RouteTypeEnum::KAERI) as $ride)
-                            <x-dashboard.ride-schedule :ride="$ride" />
+                        @foreach($myDriverRideSchedules[$date->toDateString()]->where('route_type_id', RouteTypeEnum::KAERI) as $ride)
+                            <x-dashboard.ride-schedule-btn-driver :ride="$ride" />
                         @endforeach
                     </div>
                 </div>
