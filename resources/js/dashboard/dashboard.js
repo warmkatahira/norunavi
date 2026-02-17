@@ -64,10 +64,10 @@ function create_ride_schedule_select(route_type_id, ride_id, join_ride_detail_id
                 let $thead = $(`
                     <thead>
                         <tr class="text-left text-white bg-black whitespace-nowrap sticky top-0">
-                            <th class="py-1 px-2 text-center">場所名</th>
-                            <th class="py-1 px-2 text-center">場所メモ</th>
-                            <th class="py-1 px-2 text-center">停車順番</th>
-                            <th class="py-1 px-2 text-center">着 → 発</th>
+                            <th class="py-1 px-2 font-thin text-center">場所名</th>
+                            <th class="py-1 px-2 font-thin text-center">場所メモ</th>
+                            <th class="py-1 px-2 font-thin text-center">停車順番</th>
+                            <th class="py-1 px-2 font-thin text-center">着 → 発</th>
                         </tr>
                     </thead>
                 `);

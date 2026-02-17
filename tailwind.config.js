@@ -49,7 +49,7 @@ export default {
             },
             spacing: {
                 'pc-modal-window'      : "700px",
-                'sp-modal-window'      : "70%",
+                'sp-modal-window'      : "90%",
             },
             width: {
                 '1/7'               : '14.2857143%',

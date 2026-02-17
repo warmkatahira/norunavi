@@ -1,10 +1,10 @@
 import{s as w}from"./loading-CLXJ3Lsj.js";$(document).on("click",function(e){e.target.classList.contains("ride_schedule_select_modal_close")&&$("#ride_schedule_select_modal").addClass("hidden");const s=$(e.target).closest(".ride_schedule_select_modal_open");if(s.length){const l=s.data("route-type-id"),a=s.data("ride-id"),r=s.data("join-ride-detail-id");y(l,a,r),$("#ride_id").val(a),$("#ride_schedule_select_modal").removeClass("hidden")}});function y(e,s,l){$.ajax({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")},url:"/ajax/get_ride_schedule_select_info",type:"GET",data:{ride_id:s},dataType:"json",success:function(r){try{e===1?$("#ride_schedule_select_modal_title").html("乗車する場所を選択して下さい"):e===2&&$("#ride_schedule_select_modal_title").html("降車する場所を選択して下さい"),$("#ride_schedule_select_div").empty();let c=$('<div class="hidden md:block overflow-x-auto w-full"></div>'),i=$('<table class="text-sm w-full border-collapse"></table>'),h=$(`
                     <thead>
                         <tr class="text-left text-white bg-black whitespace-nowrap sticky top-0">
-                            <th class="py-1 px-2 text-center">場所名</th>
-                            <th class="py-1 px-2 text-center">場所メモ</th>
-                            <th class="py-1 px-2 text-center">停車順番</th>
-                            <th class="py-1 px-2 text-center">着 → 発</th>
+                            <th class="py-1 px-2 font-thin text-center">場所名</th>
+                            <th class="py-1 px-2 font-thin text-center">場所メモ</th>
+                            <th class="py-1 px-2 font-thin text-center">停車順番</th>
+                            <th class="py-1 px-2 font-thin text-center">着 → 発</th>
                         </tr>
                     </thead>
                 `),o=$('<tbody class="bg-white"></tbody>'),n=$('<div class="md:hidden space-y-2 w-full"></div>');r.ride_details.forEach(function(t){let p=v(t),d=!1;e===1?d=!!t.departure_time:e===2&&(d=!!t.arrival_time);let u="",_=t.ride_detail_id===l?"checked":"";d?u=`

@@ -1,6 +1,6 @@
 <x-app-layout>
     @if(Auth::user()->role_id === RoleEnum::PART)
-        <x-dashboard.part-display :dates="$dates" :rides="$rides" />
+        <x-dashboard.ride-display :dates="$dates" :rides="$rides" />
     @else
         <x-dashboard.driver-display :dates="$dates" :rides="$rides" />
     @endif
