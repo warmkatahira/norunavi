@@ -19,12 +19,6 @@ $(document).on('click', function(e){
         create_ride_schedule_select(route_type_id, ride_id, join_ride_detail_id);
         // 送迎IDを更新
         $('#ride_id').val(ride_id);
-        /* // チェックボックスを全てオフにする
-        $('.order_import_pattern_select').prop('checked', false);
-        // 全行のハイライトを削除
-        $('tbody tr').removeClass('bg-theme-sub'); */
-        // モーダルを開く
-        $('#ride_schedule_select_modal').removeClass('hidden');
     }
 });
 
@@ -188,6 +182,8 @@ function create_ride_schedule_select(route_type_id, ride_id, join_ride_detail_id
                         .removeClass('bg-theme-sub')
                         .addClass('bg-white');
                 }
+                // モーダルを開く
+                $('#ride_schedule_select_modal').removeClass('hidden');
             } catch (e) {
             }
         },

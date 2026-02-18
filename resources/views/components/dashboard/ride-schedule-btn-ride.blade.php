@@ -14,14 +14,14 @@
     $border_color = 'border-black';
     // 乗降車予定の送迎の場合
     if($joinedRideDetail){
-        $btn_bg = 'bg-theme-main text-white ';
+        $btn_bg = 'bg-theme-main text-white';
         $border_color = 'border-white group-hover:border-black';
     }
 @endphp
 <button type="button" data-ride-id="{{ $ride->ride_id }}" data-route-type-id="{{ $ride->route_type_id }}" data-join-ride-detail-id="{{ $joinedRideDetail->ride_detail_id ?? '' }}" class="{{ $btn_bg }} col-span-12 xl:col-span-3 ride_schedule_select_modal_open shadow-md rounded-md py-3 pl-3 pr-5 hover:bg-theme-sub hover:text-black group">
     <div class="flex flex-row justify-start items-center">
         @if($joinedRideDetail)
-            <i class="las la-star text-yellow-400 group-hover:text-pink-500 mr-1 relative -top-0.7"></i>
+            <i class="las la-star text-yellow-400 group-hover:text-pink-500 mr-1 relative -top-0.5"></i>
         @endif
         {{ $ride->route_name }}
     </div>
