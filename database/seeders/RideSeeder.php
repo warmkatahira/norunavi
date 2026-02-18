@@ -114,7 +114,7 @@ class RideSeeder extends Seeder
             'route_name'            => '14時出発便',
             'driver_user_no'        => 1,
             'use_vehicle_id'        => 2,
-            'ride_memo'             => null,
+            'ride_memo'             => '利用者いなければ運行なし',
             'is_active'             => 1,
         ]);
         RideDetail::create([
