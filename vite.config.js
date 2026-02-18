@@ -26,7 +26,8 @@ export default defineConfig({
                 // 認証
                 'resources/js/auth/register.js',
                 // ダッシュボード
-                'resources/js/dashboard/dashboard.js',
+                'resources/js/dashboard/ride_schedule_select.js',
+                'resources/js/dashboard/ride_schedule_check.js',
                 // 送迎
                 'resources/js/ride/ride_schedule/ride_schedule.js',
                 // 管理

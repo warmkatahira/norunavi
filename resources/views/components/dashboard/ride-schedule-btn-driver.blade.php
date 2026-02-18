@@ -22,12 +22,10 @@
             <span class="text-xs ml-1">{{ '('.$ride_user_count.'人)' }}</span>
         @endif
     </div>
-    @if($ride_user_count > 0)
-        <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-            <div class="flex items-center justify-start w-1/2">
-                <i class="las la-clock mr-1"></i>
-                {{ CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発' }}
-            </div>
+    <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
+        <div class="flex items-center justify-start w-1/2">
+            <i class="las la-clock mr-1"></i>
+            {{ CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発' }}
         </div>
-    @endif
+    </div>
 </button>

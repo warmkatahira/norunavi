@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CG1Jri4P.css",
+    "file": "assets/app-CFQv8hCP.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -64,10 +64,16 @@
     "src": "resources/js/common.js",
     "isEntry": true
   },
-  "resources/js/dashboard/dashboard.js": {
-    "file": "assets/dashboard-CsrJ65gP.js",
-    "name": "dashboard",
-    "src": "resources/js/dashboard/dashboard.js",
+  "resources/js/dashboard/ride_schedule_check.js": {
+    "file": "assets/ride_schedule_check-Dg4coKiQ.js",
+    "name": "ride_schedule_check",
+    "src": "resources/js/dashboard/ride_schedule_check.js",
+    "isEntry": true
+  },
+  "resources/js/dashboard/ride_schedule_select.js": {
+    "file": "assets/ride_schedule_select-Bu1C3wJE.js",
+    "name": "ride_schedule_select",
+    "src": "resources/js/dashboard/ride_schedule_select.js",
     "isEntry": true,
     "imports": [
       "resources/js/loading.js"
