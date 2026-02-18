@@ -12,7 +12,7 @@
                     </div>
                 @else
                     <div class="grid grid-cols-12 text-gray-400 text-sm pl-3">
-                        <span class="col-span-12 xl:col-span-3 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
+                        <span class="col-span-12 xl:col-span-2 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
                     </div>
                 @endif
             </div>
@@ -26,7 +26,7 @@
                     </div>
                 @else
                     <div class="grid grid-cols-12 text-gray-400 text-sm pl-3">
-                        <span class="col-span-12 xl:col-span-3 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
+                        <span class="col-span-12 xl:col-span-2 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
                     </div>
                 @endif
             </div>
