@@ -25,12 +25,21 @@ class UserSeeder extends Seeder
             'must_change_password'  => false,
         ]);
         User::create([
-            'user_id'               => 'dirver-A',
+            'user_id'               => 'd',
             'last_name'             => 'ドライバー',
             'first_name'            => 'A',
-            'password'              => bcrypt('katahira134'),
+            'password'              => bcrypt('d'),
             'role_id'               => 'part',
             'is_driver_eligible'    => true,
+            'must_change_password'  => false,
+        ]);
+        User::create([
+            'user_id'               => 'u',
+            'last_name'             => 'ユーザー',
+            'first_name'            => 'A',
+            'password'              => bcrypt('u'),
+            'role_id'               => 'part',
+            'is_driver_eligible'    => false,
             'must_change_password'  => false,
         ]);
         User::factory()->count(20)->create();

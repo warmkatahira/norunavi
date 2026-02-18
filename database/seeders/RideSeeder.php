@@ -67,10 +67,6 @@ class RideSeeder extends Seeder
             ]);
         }
         RideUser::create([
-            'ride_detail_id'        => 1,
-            'user_no'               => 1,
-        ]);
-        RideUser::create([
             'ride_detail_id'        => 2,
             'user_no'               => 20,
         ]);

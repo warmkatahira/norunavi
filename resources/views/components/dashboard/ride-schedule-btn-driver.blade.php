@@ -28,12 +28,10 @@
             {{ CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発' }}
         </div>
     </div>
-    @if($ride->ride_memo)
-        <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-            <div class="flex items-center justify-start w-full">
-                <i class="las la-comment mr-1"></i>
-                {{ $ride->ride_memo }}
-            </div>
+    <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
+        <div class="flex items-center justify-start w-full">
+            <i class="las la-comment mr-1"></i>
+            {{ $ride->ride_memo ?? 'なし' }}
         </div>
-    @endif
+    </div>
 </button>
