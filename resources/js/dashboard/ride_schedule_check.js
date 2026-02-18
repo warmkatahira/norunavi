@@ -46,7 +46,7 @@ function create_ride_schedule_check(route_type_id, ride_id, join_ride_detail_id)
 
                 let $tableWrapper = $('<div class="hidden md:block overflow-x-auto w-full"></div>');
                 let scheduleHtml = `<div class="mb-3 text-xl"><i class="las la-calendar la-lg mr-1"></i>${data['schedule_date']}</div>`;
-                let rideMemoHtml = `<div class="mb-3 text-base"><i class="las la-comment la-lg mr-1"></i>${data['ride']['ride_memo']}</div>`;
+                let rideMemoHtml = `<div class="mb-3 text-base"><i class="las la-comment la-lg mr-1"></i>${data['ride']['ride_memo'] ?? 'なし'}</div>`;
                 let $schedule_date_pc = $(scheduleHtml);
                 let $schedule_date_sp = $(scheduleHtml);
                 let $ride_memo_pc = $(rideMemoHtml);
