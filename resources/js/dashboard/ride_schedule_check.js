@@ -45,9 +45,12 @@ function create_ride_schedule_check(route_type_id, ride_id, join_ride_detail_id)
                 */
 
                 let $tableWrapper = $('<div class="hidden md:block overflow-x-auto w-full"></div>');
-                let scheduleHtml = `<div class="mb-3 text-xl">${data['schedule_date']}</div>`;
+                let scheduleHtml = `<div class="mb-3 text-xl"><i class="las la-calendar la-lg mr-1"></i>${data['schedule_date']}</div>`;
+                let rideMemoHtml = `<div class="mb-3 text-base"><i class="las la-comment la-lg mr-1"></i>${data['ride']['ride_memo']}</div>`;
                 let $schedule_date_pc = $(scheduleHtml);
                 let $schedule_date_sp = $(scheduleHtml);
+                let $ride_memo_pc = $(rideMemoHtml);
+                let $ride_memo_sp = $(rideMemoHtml);
                 let $table = $('<table class="text-sm w-full border-collapse"></table>');
 
                 let $thead = $(`
@@ -78,6 +81,7 @@ function create_ride_schedule_check(route_type_id, ride_id, join_ride_detail_id)
                 */
                 
                 $cardArea.append($schedule_date_sp);
+                $cardArea.append($ride_memo_sp);
                 data['ride_details'].forEach(function(ride_detail){
                     let timeHtml = get_arr_dep_info(ride_detail);
 
@@ -154,6 +158,7 @@ function create_ride_schedule_check(route_type_id, ride_id, join_ride_detail_id)
                 $table.append($thead);
                 $table.append($tbody);
                 $tableWrapper.append($schedule_date_pc);
+                $tableWrapper.append($ride_memo_pc);
                 $tableWrapper.append($table);
                 
                 
