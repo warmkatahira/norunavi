@@ -10,6 +10,10 @@
             @csrf
             <div class="flex flex-col mt-5">
                 <x-form.p label="氏名" :value="$user->full_name" />
+                @foreach($user->vehicles as $index => $vehicle)
+                    <x-form.p :label="'登録車両 '.$index + 1" :value="$vehicle->vehicle_info_at_profile" />
+
+                @endforeach
             </div>
         </form>
         <div class="flex flex-row gap-10 mt-5">

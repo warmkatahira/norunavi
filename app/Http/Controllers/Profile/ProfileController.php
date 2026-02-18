@@ -16,7 +16,7 @@ class ProfileController extends Controller
         // ページヘッダーをセッションに格納
         session(['page_header' => 'プロフィール']);
         // ユーザーを取得
-        $user = User::find(Auth::user()->user_no);
+        $user = User::ByPk(Auth::user()->user_no)->with('vehicles')->first();
         return view('profile.index')->with([
             'user' => $user,
         ]);

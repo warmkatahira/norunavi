@@ -65,6 +65,11 @@ class Vehicle extends BaseModel
     {
         return $this->vehicle_name.' / '.$this->vehicle_color.' / '.$this->vehicle_number. '（所有：' . $this->owner . '）';
     }
+    // 車両情報の文字列を返すアクセサ
+    public function getVehicleInfoAtProfileAttribute()
+    {
+        return $this->vehicle_name.' / '.$this->vehicle_color.' / '.$this->vehicle_number. '（' . $this->is_active_text . '）';
+    }
     // ダウンロード時のヘッダーを定義
     public static function downloadHeader()
     {
