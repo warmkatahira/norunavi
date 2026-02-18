@@ -17,7 +17,7 @@ class VehicleSeeder extends Seeder
         Vehicle::create([
             'vehicle_type_id'       => 1,
             'vehicle_category_id'   => 1,
-            'vehicle_name'          => 'WARMバス',
+            'vehicle_name'          => '社用車バス',
             'vehicle_color'         => '白',
             'vehicle_number'        => '2025',
             'vehicle_capacity'      => 15,
@@ -26,7 +26,7 @@ class VehicleSeeder extends Seeder
         Vehicle::create([
             'vehicle_type_id'       => 1,
             'vehicle_category_id'   => 2,
-            'vehicle_name'          => 'フリード',
+            'vehicle_name'          => '社用車フリード',
             'vehicle_color'         => 'オレンジ',
             'vehicle_number'        => '2021',
             'vehicle_capacity'      => 5,

@@ -21,8 +21,8 @@ class RideSeeder extends Seeder
             'vehicle_category_id'   => 1,
             'schedule_date'         => now(),
             'route_name'            => '朝一番便',
-            'driver_user_no'        => 1,
-            'use_vehicle_id'        => 2,
+            'driver_user_no'        => 2,
+            'use_vehicle_id'        => 1,
             'ride_memo'             => 'test',
             'is_active'             => 1,
         ]);
@@ -73,7 +73,7 @@ class RideSeeder extends Seeder
 
         Ride::create([
             'route_type_id'         => 2,
-            'vehicle_category_id'   => 1,
+            'vehicle_category_id'   => 2,
             'schedule_date'         => now(),
             'route_name'            => '12時出発便',
             'driver_user_no'        => 1,
@@ -109,7 +109,7 @@ class RideSeeder extends Seeder
 
         Ride::create([
             'route_type_id'         => 2,
-            'vehicle_category_id'   => 1,
+            'vehicle_category_id'   => 2,
             'schedule_date'         => now(),
             'route_name'            => '14時出発便',
             'driver_user_no'        => 1,

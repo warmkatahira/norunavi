@@ -52,7 +52,7 @@
     @endif
     @if($ride->user)
         <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-            <i class="las la-car-side mr-1 relative -top-0.7"></i>{{ $ride->user->full_name }}
+            <i class="las la-car-side mr-1 relative -top-0.7"></i>{{ $ride->user->full_name .'('. $ride->vehicle?->vehicle_name . $ride->vehicle?->vehicle_number .')' }}
         </div>
     @endif
 </button>
