@@ -5,28 +5,28 @@
             <div>
                 <span class="text-base font-semibold block my-2">行き</span>
                 @if($rides->get($date->toDateString(), collect())->where('route_type_id', RouteTypeEnum::IKI)->isNotEmpty())
-                    <div class="grid grid-cols-12 pl-3 gap-5">
+                    <div class="grid grid-cols-12 items-start pl-3 gap-5">
                         @foreach($rides[$date->toDateString()]->where('route_type_id', RouteTypeEnum::IKI) as $ride)
                             <x-dashboard.ride-schedule-btn-ride :ride="$ride" />
                         @endforeach
                     </div>
                 @else
                     <div class="grid grid-cols-12 text-gray-400 text-sm pl-3">
-                        <span class="col-span-12 xl:col-span-3 text-center rounded-md py-3 pl-3 pr-5 bg-black text-white">送迎予定なし</span>
+                        <span class="col-span-12 xl:col-span-3 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
                     </div>
                 @endif
             </div>
             <div>
                 <span class="text-base font-semibold block my-2">帰り</span>
                 @if($rides->get($date->toDateString(), collect())->where('route_type_id', RouteTypeEnum::KAERI)->isNotEmpty())
-                    <div class="grid grid-cols-12 pl-3 gap-5">
+                    <div class="grid grid-cols-12 items-start pl-3 gap-5">
                         @foreach($rides[$date->toDateString()]->where('route_type_id', RouteTypeEnum::KAERI) as $ride)
                             <x-dashboard.ride-schedule-btn-ride :ride="$ride" />
                         @endforeach
                     </div>
                 @else
                     <div class="grid grid-cols-12 text-gray-400 text-sm pl-3">
-                        <span class="col-span-12 xl:col-span-3 text-center rounded-md py-3 pl-3 pr-5 bg-black text-white">送迎予定なし</span>
+                        <span class="col-span-12 xl:col-span-3 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
                     </div>
                 @endif
             </div>

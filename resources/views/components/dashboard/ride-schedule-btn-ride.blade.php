@@ -26,29 +26,33 @@
         {{ $ride->route_name }}
     </div>
     @if($joinedRideDetail)
-        <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-            @if($ride->route_type_id == RouteTypeEnum::KAERI && $firstDeparture)
+        @if($ride->route_type_id == RouteTypeEnum::KAERI && $firstDeparture)
+            <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
                 <div class="flex items-center justify-start w-1/2">
                     <i class="las la-clock mr-1"></i>
                     {{ CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発' }}
                 </div>
+            </div>
+            <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
                 <div class="flex items-center justify-start w-1/2">
                     <i class="las la-map-pin mr-1 relative -top-0.7"></i>
                     {{ $joinedRideDetail->location_name.' 降車' }}
                 </div>
-            @else
-                <div class="flex flex-row w-full">
-                    <div class="flex items-center justify-start w-1/2">
-                        <i class="las la-clock mr-1"></i>
-                        {{ CarbonImmutable::parse($joinedRideDetail->departure_time)->format('H:i') . ' 発' }}
-                    </div>
-                    <div class="flex items-center justify-start w-1/2">
-                        <i class="las la-map-pin mr-1 relative -top-0.7"></i>
-                        {{ $joinedRideDetail->location_name.' 乗車' }}
-                    </div>
+            </div>
+        @else
+            <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
+                <div class="flex items-center justify-start w-1/2">
+                    <i class="las la-clock mr-1"></i>
+                    {{ CarbonImmutable::parse($joinedRideDetail->departure_time)->format('H:i') . ' 発' }}
                 </div>
-            @endif
-        </div>
+            </div>
+            <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
+                <div class="flex items-center justify-start w-1/2">
+                    <i class="las la-map-pin mr-1 relative -top-0.7"></i>
+                    {{ $joinedRideDetail->location_name.' 乗車' }}
+                </div>
+            </div>
+        @endif
     @endif
     @if($ride->user)
         <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">

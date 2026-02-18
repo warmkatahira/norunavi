@@ -23,14 +23,16 @@
         @endif
     </div>
     <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-        <div class="flex items-center justify-start w-1/2">
+        <div class="flex items-center justify-start w-full">
             <i class="las la-clock mr-1"></i>
             {{ CarbonImmutable::parse($firstDeparture)->format('H:i') . ' 発' }}
         </div>
-        <div class="flex items-center justify-start w-1/2">
+    </div>
+    <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
+        <div class="flex items-center justify-start w-full">
             <i class="las la-car-side mr-1"></i>
             @if($ride->vehicle)
-                {{ $ride->vehicle->vehicle_name }}
+                {{ $ride->vehicle->vehicle_name . '(' .$ride->vehicle->vehicle_number . ')' }}
             @else
                 未登録
             @endif
