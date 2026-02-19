@@ -4,6 +4,7 @@ namespace App\Services\Admin\Vehicle;
 
 // モデル
 use App\Models\Vehicle;
+use App\Models\Ride;
 
 class VehicleUpdateService
 {
@@ -12,6 +13,17 @@ class VehicleUpdateService
     {
         // 車両を取得
         $vehicle = Vehicle::byPk($request->vehicle_id)->lockForUpdate()->first();
+        // 利用可否が「利用不可」に更新されようとしている場合
+        if($vehicle->is_active && $request->boolean('is_active') === false){
+            // 今日を含む未来の送迎で使用予定があるかを取得
+            $exists = Ride::where('use_vehicle_id', $vehicle->vehicle_id)
+                        ->whereDate('schedule_date', '>=', now()->toDateString())
+                        ->exists();
+            // 使用予定がある場合
+            if($exists){
+                throw new \RuntimeException('使用予定の車両のため、利用不可に更新できません。');
+            }
+        }
         // 更新
         $vehicle->update([
             'user_no'               => $request->owner,

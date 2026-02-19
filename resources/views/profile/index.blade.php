@@ -8,12 +8,12 @@
         </div> --}}
         <form method="POST" action="{{ route('profile_update.update') }}" id="profile_update_form">
             @csrf
-            <div class="flex flex-col mt-5">
+            <div class="flex flex-col w-full md:w-form-div mt-5">
                 <x-form.p label="氏名" :value="$user->full_name" />
-                @foreach($user->vehicles as $index => $vehicle)
-                    <x-form.p :label="'登録車両 '.$index + 1" :value="$vehicle->vehicle_info_at_profile" />
-
-                @endforeach
+                <div class="flex w-full bg-white">
+                    <a href="{{ route('vehicle_create.index', ['from_profile' => 'true']) }}" class="btn ml-auto mr-3 py-2 px-5 mt-5 text-white rounded-md bg-theme-main"><i class="las la-plus la-lg mr-1"></i>車両追加</a>
+                </div>
+                <x-profile.vehicle :vehicles="$user->vehicles" />
             </div>
         </form>
         <div class="flex flex-row gap-10 mt-5">

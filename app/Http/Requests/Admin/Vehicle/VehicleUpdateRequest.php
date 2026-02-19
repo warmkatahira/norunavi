@@ -32,7 +32,7 @@ class VehicleUpdateRequest extends BaseRequest
     {
         return [
             'vehicle_id'            => 'required|exists:vehicles,vehicle_id',
-            'owner'                 => 'nullable|exists:users,user_no',
+            'owner'                 => 'required_if:from_profile,true|exists:users,user_no',
             'vehicle_type_id'       => 'required|exists:vehicle_types,vehicle_type_id',
             'vehicle_category_id'   => 'required|exists:vehicle_categories,vehicle_category_id',
             'vehicle_name'          => 'required|string|max:10',

@@ -31,7 +31,7 @@ class VehicleCreateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'owner'                 => 'nullable|exists:users,user_no',
+            'owner'                 => 'required_if:from_profile,true|exists:users,user_no',
             'vehicle_type_id'       => 'required|exists:vehicle_types,vehicle_type_id',
             'vehicle_category_id'   => 'required|exists:vehicle_categories,vehicle_category_id',
             'vehicle_name'          => 'required|string|max:10',

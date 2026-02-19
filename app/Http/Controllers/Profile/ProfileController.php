@@ -15,6 +15,8 @@ class ProfileController extends Controller
     {
         // ページヘッダーをセッションに格納
         session(['page_header' => 'プロフィール']);
+        // 現在のURLを取得
+        session(['back_url_1' => url()->full()]);
         // ユーザーを取得
         $user = User::ByPk(Auth::user()->user_no)->with('vehicles')->first();
         return view('profile.index')->with([
