@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Ride;
 use App\Models\RideDetail;
 use App\Models\RideUser;
+use App\Models\RideDriverCandidate;
 
 class RideSeeder extends Seeder
 {
@@ -141,6 +142,34 @@ class RideSeeder extends Seeder
             'location_memo'         => null,
             'stop_order'            => 3,
             'arrival_time'          => '14:36',
+        ]);
+
+        RideDriverCandidate::create([
+            'ride_id'           => 2,
+            'user_no'           => 1,
+            'driver_status_id'  => 1,
+        ]);
+        RideDriverCandidate::create([
+            'ride_id'           => 2,
+            'user_no'           => 2,
+            'use_vehicle_id'    => 1,
+            'driver_status_id'  => 3,
+        ]);
+        RideDriverCandidate::create([
+            'ride_id'           => 2,
+            'user_no'           => 3,
+            'driver_status_id'  => 1,
+        ]);
+
+        RideDriverCandidate::create([
+            'ride_id'           => 3,
+            'user_no'           => 1,
+            'driver_status_id'  => 1,
+        ]);
+        RideDriverCandidate::create([
+            'ride_id'   => 3,
+            'user_no'   => 2,
+            'driver_status_id'  => 2,
         ]);
     }
 }

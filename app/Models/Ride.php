@@ -54,6 +54,17 @@ class Ride extends BaseModel
     {
         return $this->hasMany(RideDetail::class, 'ride_id', 'ride_id');
     }
+    // ride_driver_candidatesテーブルとのリレーション(全て)
+    public function ride_driver_candidates()
+    {
+        return $this->hasMany(RideDriverCandidate::class, 'ride_id', 'ride_id');
+    }
+    // ride_driver_candidatesテーブルとのリレーション(確定したドライバーのみを取得)
+    public function confirmed_driver_candidates()
+    {
+        return $this->hasMany(RideDriverCandidate::class, 'ride_id', 'ride_id')
+                    ->where('driver_status_id', 2);
+    }
     // ダウンロード時のヘッダーを定義
     public static function downloadHeader()
     {

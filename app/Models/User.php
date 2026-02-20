@@ -35,6 +35,8 @@ class User extends Authenticatable
         'must_change_password',
         'last_login_at',
     ];
+    // JSONレスポンスに含めたいアクセサ属性
+    protected $appends = ['full_name'];
     // 主キーで検索するスコープ
     public function scopeByPk($query, $id)
     {

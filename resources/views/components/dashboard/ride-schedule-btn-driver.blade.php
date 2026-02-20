@@ -11,8 +11,10 @@
         $btn_bg = 'bg-theme-main text-white';
         $border_color = 'border-white group-hover:border-black';
     }
+    // 自分の送迎ドライバー候補者レコードを取得
+    $myRideDriverCandidate = $ride->ride_driver_candidates->firstWhere('user_no', Auth::user()->user_no);
 @endphp
-<button type="button" data-ride-id="{{ $ride->ride_id }}" data-route-type-id="{{ $ride->route_type_id }}" data-join-ride-detail-id="{{ $joinedRideDetail->ride_detail_id ?? '' }}" class="{{ $btn_bg }} col-span-12 xl:col-span-3 ride_schedule_check_modal_open shadow-md rounded-md py-3 pl-3 pr-5 hover:bg-theme-sub hover:text-black group">
+<button type="button" data-ride-id="{{ $ride->ride_id }}" data-route-type-id="{{ $ride->route_type_id }}" data-join-ride-detail-id="{{ $joinedRideDetail->ride_detail_id ?? '' }}" class="{{ $btn_bg }} col-span-12 xl:col-span-3 ride_schedule_check_modal_open shadow-md rounded-md py-2 pl-3 pr-5 hover:bg-theme-sub hover:text-black group">
     <div class="flex flex-row justify-start items-center">
         @if($ride_user_count > 0)
             <i class="las la-star text-yellow-400 group-hover:text-pink-500 mr-1 relative -top-0.5"></i>
@@ -31,8 +33,8 @@
     <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
         <div class="flex items-center justify-start w-full">
             <i class="las la-car-side mr-1"></i>
-            @if($ride->vehicle)
-                {{ $ride->vehicle->vehicle_name . '(' .$ride->vehicle->vehicle_number . ')' }}
+            @if($myRideDriverCandidate->vehicle)
+                {{ $myRideDriverCandidate->vehicle->vehicle_name . '(' .$myRideDriverCandidate->vehicle->vehicle_number . ')' }}
             @else
                 未登録
             @endif

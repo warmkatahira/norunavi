@@ -18,7 +18,7 @@
         $border_color = 'border-white group-hover:border-black';
     }
 @endphp
-<button type="button" data-ride-id="{{ $ride->ride_id }}" data-route-type-id="{{ $ride->route_type_id }}" data-join-ride-detail-id="{{ $joinedRideDetail->ride_detail_id ?? '' }}" class="{{ $btn_bg }} col-span-12 xl:col-span-3 ride_schedule_select_modal_open shadow-md rounded-md py-3 pl-3 pr-5 hover:bg-theme-sub hover:text-black group">
+<button type="button" data-ride-id="{{ $ride->ride_id }}" data-route-type-id="{{ $ride->route_type_id }}" data-join-ride-detail-id="{{ $joinedRideDetail->ride_detail_id ?? '' }}" class="{{ $btn_bg }} col-span-12 xl:col-span-3 ride_schedule_select_modal_open shadow-md rounded-md py-2 pl-3 pr-5 hover:bg-theme-sub hover:text-black group">
     <div class="flex flex-row justify-start items-center">
         @if($joinedRideDetail)
             <i class="las la-star text-yellow-400 group-hover:text-pink-500 mr-1 relative -top-0.5"></i>
@@ -54,9 +54,13 @@
             </div>
         @endif
     @endif
-    @if($ride->user)
-        <div class="flex flex-row justify-start items-center mt-1 border-t {{ $border_color }} pt-1 pl-3">
-            <i class="las la-car-side mr-1 relative -top-0.7"></i>{{ $ride->user->full_name .'('. $ride->vehicle?->vehicle_name . $ride->vehicle?->vehicle_number .')' }}
+    @if($ride->confirmed_driver_candidates->isNotEmpty())
+        <div class="flex flex-col mt-1 border-t {{ $border_color }} pt-1 pl-3">
+            @foreach($ride->confirmed_driver_candidates as $confirmed_driver_candidate)
+                <div class="text-left">
+                    <i class="las la-car-side mr-1 relative -top-0.7"></i>{{ $confirmed_driver_candidate->user->full_name .'('. $confirmed_driver_candidate->vehicle?->vehicle_name . $confirmed_driver_candidate->vehicle?->vehicle_number .')' }}
+                </div>
+            @endforeach
         </div>
     @endif
 </button>

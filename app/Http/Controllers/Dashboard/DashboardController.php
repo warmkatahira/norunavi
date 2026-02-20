@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // モデル
 use App\Models\Ride;
+// 列挙
+use App\Enums\DriverStatusEnum;
 // その他
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,7 @@ class DashboardController extends Controller
         $baseQuery = Ride::active()
                         ->whereIn('schedule_date', $dates->map->toDateString())
                         ->orderBy('schedule_date')
-                        ->with(['route_type', 'ride_details.ride_users', 'user']);
+                        ->with(['route_type', 'ride_details.ride_users', 'confirmed_driver_candidates.user', 'user']);
         // 指定された期間の送迎予定を取得
         $rides = (clone $baseQuery)
                     ->get()
@@ -41,7 +43,10 @@ class DashboardController extends Controller
                     ->groupBy(fn ($ride) => $ride->schedule_date);
         // 指定された期間の自分がドライバーの送迎予定を取得
         $my_driver_ride_schedules = (clone $baseQuery)
-                                        ->where('driver_user_no', Auth::user()->user_no)
+                                        ->whereHas('confirmed_driver_candidates', function ($q) {
+                                            $q->where('user_no', Auth::user()->user_no)
+                                            ->where('driver_status_id', DriverStatusEnum::CONFIRMED);
+                                        })
                                         ->get()
                                         ->sortBy(fn ($ride) => optional($ride->ride_details->min('departure_time')))
                                         ->groupBy(fn ($ride) => $ride->schedule_date);

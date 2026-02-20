@@ -16,7 +16,7 @@ class ajaxController extends Controller
     public function get_ride_schedule_select_info(Request $request)
     {
         // 送迎予定を取得
-        $ride = Ride::byPk($request->ride_id)->with('vehicle')->first();
+        $ride = Ride::byPk($request->ride_id)->with(['confirmed_driver_candidates.vehicle', 'confirmed_driver_candidates.user'])->first();
         // 送迎詳細を取得
         $ride_details = RideDetail::where('ride_id', $request->ride_id)->with('ride_users.user')->get();
         // 自分が登録しているride_detailsを取得

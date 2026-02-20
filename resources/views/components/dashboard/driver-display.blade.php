@@ -1,3 +1,7 @@
+<div class="flex flex-row gap-3 mb-2">
+    <button type="button" id="" class="btn bg-theme-main text-white rounded-md px-5 py-2">自分の送迎予定</button>
+    <button type="button" id="" class="btn bg-theme-main text-white rounded-md px-5 py-2">手上げ対象送迎予定</button>
+</div>
 <div class="flex flex-col gap-3">
     @foreach($dates as $date)
         <div class="border p-3 mb-2 bg-white shadow-md rounded-md">
