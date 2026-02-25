@@ -15,14 +15,6 @@ class RideScheduleUpdateRequest extends BaseRequest
         return true;
     }
 
-    protected function prepareForValidation()
-    {
-        // 送信されていない = 無効なので、0をパラメータにマージする
-        $this->merge([
-            'is_active' => $this->has('is_active') ? $this->input('is_active') : 0,
-        ]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,10 +26,8 @@ class RideScheduleUpdateRequest extends BaseRequest
             'ride_id'               => 'required|exists:rides,ride_id',
             'route_name'            => 'required|string|max:20',
             'schedule_date'         => 'required|date',
-            'driver_user_no'        => 'nullable|exists:users,user_no',
-            'use_vehicle_id'        => 'nullable|exists:vehicles,vehicle_id',
             'ride_memo'             => 'nullable|string|max:50',
-            'is_active'             => 'required|boolean',
+            'ride_status_id'        => 'required|exists:ride_statuses,ride_status_id',
         ];
     }
 

@@ -21,12 +21,14 @@ return new class extends Migration
             $table->unsignedInteger('use_vehicle_id')->nullable();
             $table->string('ride_memo', 50)->nullable();
             $table->boolean('is_active')->default(true);
+            $table->unsignedInteger('ride_status_id');
             $table->timestamps();
             // 外部キー
             $table->foreign('driver_user_no')->references('user_no')->on('users')->cascadeOnUpdate();
             $table->foreign('use_vehicle_id')->references('vehicle_id')->on('vehicles')->cascadeOnUpdate();
             $table->foreign('route_type_id')->references('route_type_id')->on('route_types')->cascadeOnUpdate();
             $table->foreign('vehicle_category_id')->references('vehicle_category_id')->on('vehicle_categories')->cascadeOnUpdate();
+            $table->foreign('ride_status_id')->references('ride_status_id')->on('ride_statuses')->cascadeOnUpdate();
         });
     }
 

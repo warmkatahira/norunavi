@@ -28,6 +28,8 @@ export default defineConfig({
                 // ダッシュボード
                 'resources/js/dashboard/ride_schedule_select.js',
                 'resources/js/dashboard/ride_schedule_check.js',
+                'resources/js/dashboard/driver_display.js',
+                'resources/js/dashboard/driver_recruiting.js',
                 // 送迎
                 'resources/js/ride/ride_schedule/ride_schedule.js',
                 // 管理

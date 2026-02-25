@@ -11,11 +11,9 @@
         id="ride_schedule_form">
         @csrf
         <div class="flex flex-col border border-gray-400 divide-y divide-gray-400">
-            <x-form.switch-boolean label="運行状況" id="is_active" name="is_active" label0="運行未定" label1="運行決定" :value="$form_mode === 'update' ? $ride->is_active : null" required="true" />
+            <x-form.select label="送迎ステータス" id="ride_status_id" name="ride_status_id" :value="$form_mode === 'update' ? $ride->ride_status_id : null" :items="$ride_statuses" optionValue="ride_status_id" optionText="ride_status" required="true" />
             <x-form.input type="text" label="ルート名" id="route_name" name="route_name" :value="$form_mode === 'update' ? $ride->route_name : $route->route_name" required="true" />
             <x-form.input type="text" label="送迎日" id="schedule_date" name="schedule_date" :value="$form_mode === 'update' ? $ride->schedule_date : null" dateMultiple="{{ $form_mode === 'create' ? 'true' : 'false' }}" required="true" />
-            <x-form.select-driver label="ドライバー" id="driver_user_no" name="driver_user_no" :value="$form_mode === 'update' ? $ride->driver_user_no : null" :items="$drivers" optionValue="user_no" optionText="full_name" />
-            <x-form.select label="使用車両" id="use_vehicle_id" name="use_vehicle_id" :value="$form_mode === 'update' ? $ride->use_vehicle_id : null" :items="$vehicles" optionValue="vehicle_id" optionText="vehicle_info" />
             <x-form.input type="text" label="送迎メモ" id="ride_memo" name="ride_memo" :value="$form_mode === 'update' ? $ride->ride_memo : null" />
         </div>
         @if($form_mode === 'update')

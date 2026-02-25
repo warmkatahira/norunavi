@@ -4,6 +4,8 @@ namespace App\Services\Ride\RideSchedule;
 
 // モデル
 use App\Models\Ride;
+// 列挙
+use App\Models\RideStatusEnum;
 // その他
 use Illuminate\Support\Facades\DB;
 use Carbon\CarbonImmutable;
@@ -14,7 +16,7 @@ class RideScheduleSearchService
     public function deleteSession()
     {
         session()->forget([
-            'search_is_active',
+            'search_ride_status_id',
             'search_route_type_id',
             'search_schedule_date_from',
             'search_schedule_date_to',
@@ -29,13 +31,12 @@ class RideScheduleSearchService
         session(['back_url_1' => url()->full()]);
         // 変数が存在しない場合は検索が実行されていないので、初期条件をセット
         if(!isset($request->search_type)){
-            session(['search_is_active' => '1']);
             session(['search_schedule_date_from' => CarbonImmutable::now()->toDateString()]);
             session(['search_schedule_date_to' => CarbonImmutable::now()->toDateString()]);
         }
         // 「search」なら検索が実行されているので、検索条件をセット
         if($request->search_type === 'search'){
-            session(['search_is_active' => $request->search_is_active]);
+            session(['search_ride_status_id' => $request->search_ride_status_id]);
             session(['search_route_type_id' => $request->search_route_type_id]);
             session(['search_schedule_date_from' => $request->search_schedule_date_from]);
             session(['search_schedule_date_to' => $request->search_schedule_date_to]);
@@ -47,11 +48,11 @@ class RideScheduleSearchService
     public function getSearchResult()
     {
         // クエリをセット
-        $query = Ride::with(['route_type', 'vehicle_category', 'user', 'vehicle', 'ride_details.ride_users.user']);
-        // 運行状況の条件がある場合
-        if(session('search_is_active') != null){
+        $query = Ride::with(['route_type', 'vehicle_category', 'ride_details.ride_users.user', 'confirmed_driver_candidates.user', 'ride_status']);
+        // 送迎ステータスの条件がある場合
+        if(session('search_ride_status_id') != null){
             // 条件を指定して取得
-            $query = $query->where('is_active', session('search_is_active'));
+            $query = $query->where('ride_status_id', session('search_ride_status_id'));
         }
         // ルート区分の条件がある場合
         if(session('search_route_type_id') != null){

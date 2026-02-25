@@ -16,10 +16,8 @@ class RideScheduleUpdateService
         $ride->update([
             'route_name'            => $request->route_name,
             'schedule_date'         => $request->schedule_date,
-            'driver_user_no'        => $request->driver_user_no,
-            'use_vehicle_id'        => $request->use_vehicle_id,
             'ride_memo'             => $request->ride_memo,
-            'is_active'             => $request->is_active,
+            'ride_status_id'        => $request->ride_status_id,
         ]);
     }
 }

@@ -1,39 +1,6 @@
-<div class="flex flex-row gap-3 mb-2">
-    <button type="button" id="" class="btn bg-theme-main text-white rounded-md px-5 py-2">自分の送迎予定</button>
-    <button type="button" id="" class="btn bg-theme-main text-white rounded-md px-5 py-2">手上げ対象送迎予定</button>
+<div class="grid grid-cols-12 gap-3 mb-2">
+    <button type="button" id="my_driver_ride_schedule" class="btn switch_tab col-span-6 md:col-span-2 bg-theme-main text-white rounded-md px-5 py-2">自分の送迎</button>
+    <button type="button" id="driver_recruiting_ride_schedule_" class="btn switch_tab col-span-6 md:col-span-2 bg-white text-black rounded-md px-5 py-2">手上げ可能送迎</button>
 </div>
-<div class="flex flex-col gap-3">
-    @foreach($dates as $date)
-        <div class="border p-3 mb-2 bg-white shadow-md rounded-md">
-            <div class="font-bold text-base">{{ CarbonImmutable::parse($date)->isoFormat('YYYY年MM月DD日(ddd)') }}</div>
-            <div>
-                <span class="text-base font-semibold block my-2">行き</span>
-                @if($myDriverRideSchedules->get($date->toDateString(), collect())->where('route_type_id', RouteTypeEnum::IKI)->isNotEmpty())
-                    <div class="grid grid-cols-12 pl-3 gap-5">
-                        @foreach($myDriverRideSchedules[$date->toDateString()]->where('route_type_id', RouteTypeEnum::IKI) as $ride)
-                            <x-dashboard.ride-schedule-btn-driver :ride="$ride" />
-                        @endforeach
-                    </div>
-                @else
-                    <div class="grid grid-cols-12 text-gray-400 text-sm pl-3">
-                        <span class="col-span-12 xl:col-span-2 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
-                    </div>
-                @endif
-            </div>
-            <div>
-                <span class="text-base font-semibold block my-2">帰り</span>
-                @if($myDriverRideSchedules->get($date->toDateString(), collect())->where('route_type_id', RouteTypeEnum::KAERI)->isNotEmpty())
-                    <div class="grid grid-cols-12 pl-3 gap-5">
-                        @foreach($myDriverRideSchedules[$date->toDateString()]->where('route_type_id', RouteTypeEnum::KAERI) as $ride)
-                            <x-dashboard.ride-schedule-btn-driver :ride="$ride" />
-                        @endforeach
-                    </div>
-                @else
-                    <div class="grid grid-cols-12 text-gray-400 text-sm pl-3">
-                        <span class="col-span-12 xl:col-span-2 text-center rounded-md py-3 bg-black text-white">送迎予定なし</span>
-                    </div>
-                @endif
-            </div>
-        </div>
-    @endforeach
-</div>
+<x-dashboard.my-driver-ride-schedule :dates="$dates" :myDriverRideSchedules="$myDriverRideSchedules" />
+<x-dashboard.driver-recruiting-ride-schedule :dates="$dates" :recruitingRideSchedules="$recruitingRideSchedules" />

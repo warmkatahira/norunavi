@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Ride;
 // 列挙
 use App\Enums\DriverStatusEnum;
+use App\Enums\RideStatusEnum;
 // その他
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Auth;
@@ -50,10 +51,19 @@ class DashboardController extends Controller
                                         ->get()
                                         ->sortBy(fn ($ride) => optional($ride->ride_details->min('departure_time')))
                                         ->groupBy(fn ($ride) => $ride->schedule_date);
+        // 指定された期間の手上げが可能な送迎予定を取得
+        $recruiting_ride_schedules = Ride::where('ride_status_id', RideStatusEnum::RECRUITING)
+                                        ->whereIn('schedule_date', $dates->map->toDateString())
+                                        ->orderBy('schedule_date')
+                                        ->with(['route_type', 'ride_details.ride_users', 'confirmed_driver_candidates.user', 'user'])
+                                        ->get()
+                                        ->sortBy(fn ($ride) => optional($ride->ride_details->min('departure_time')))
+                                        ->groupBy(fn ($ride) => $ride->schedule_date);
         return view('dashboard')->with([
             'dates' => $dates,
             'rides' => $rides,
             'my_driver_ride_schedules' => $my_driver_ride_schedules,
+            'recruiting_ride_schedules' => $recruiting_ride_schedules,
         ]);
     }
 }

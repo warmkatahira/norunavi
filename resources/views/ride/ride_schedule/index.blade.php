@@ -4,7 +4,7 @@
         <x-pagination :pages="$rides" />
     </div>
     <div class="flex flex-row gap-x-5 items-start">
-        <x-ride.ride-schedule.search route="ride_schedule.index" :routeTypes="$route_types" />
+        <x-ride.ride-schedule.search route="ride_schedule.index" :routeTypes="$route_types" :rideStatuses="$ride_statuses" />
         <x-ride.ride-schedule.list :rides="$rides" />
     </div>
 </x-app-layout>

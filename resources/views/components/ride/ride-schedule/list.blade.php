@@ -4,13 +4,12 @@
             <thead>
                 <tr class="text-left text-white bg-black whitespace-nowrap sticky top-0">
                     <th class="font-thin py-1 px-2 text-center">操作</th>
-                    <th class="font-thin py-1 px-2 text-center">運行状況</th>
+                    <th class="font-thin py-1 px-2 text-center">送迎日</th>
+                    <th class="font-thin py-1 px-2 text-center">送迎ステータス</th>
                     <th class="font-thin py-1 px-2 text-center">ルート区分</th>
                     <th class="font-thin py-1 px-2 text-center">ルート名</th>
-                    <th class="font-thin py-1 px-2 text-center">送迎日</th>
                     <th class="font-thin py-1 px-2 text-center">ドライバー</th>
                     <th class="font-thin py-1 px-2 text-center">車両種別</th>
-                    <th class="font-thin py-1 px-2 text-center">使用車両</th>
                     <th class="font-thin py-1 px-2 text-center">送迎メモ</th>
                     <th class="font-thin py-1 px-2 text-center">定員</th>
                     <th class="font-thin py-1 px-2 text-center">利用者数</th>
@@ -23,16 +22,20 @@
                     @php
                         // 変数を初期化
                         $seats_remaining_class = '';
+                        // 総座席数を取得
+                        $total_vehicle_capacity = $ride->confirmed_driver_candidates->sum(fn($candidate) => $candidate->vehicle->vehicle_capacity ?? 0);
                         // 残り座席数
-                        $seats_remaining = $ride->vehicle?->vehicle_capacity - $ride->ride_details->sum(fn($detail) => $detail->ride_users->count());
-                        // 残り座席数がマイナスの場合
+                        $seats_remaining = $total_vehicle_capacity - $ride->ride_details->sum(fn($detail) => $detail->ride_users->count());
+                        // 残り座席数に応じてクラスを設定
                         if($seats_remaining < 0){
                             $seats_remaining_class = 'text-red-500';
-                        }
-                        // 残り座席数がプラスの場合
-                        if($seats_remaining > 0){
+                        }elseif($seats_remaining > 0){
                             $seats_remaining_class = 'text-blue-500';
+                        }else{
+                            $seats_remaining_class = 'text-gray-500';
                         }
+                        // 記号を取得
+                        $sign = $seats_remaining > 0 ? '+' : '';
                     @endphp
                     <tr class="text-left cursor-default whitespace-nowrap hover:bg-theme-sub group">
                         <td class="py-1 px-2 border">
@@ -47,22 +50,41 @@
                                 </div>
                             </div>
                         </td>
+                        <td class="py-1 px-2 border text-center schedule_date">{{ CarbonImmutable::parse($ride->schedule_date)->isoFormat('YYYY年MM月DD日(ddd)') }}</td>
                         <td class="py-1 px-2 border text-center">
-                            <x-list.status :value="$ride->is_active" label1="運行決定" label0="運行未定" />
+                            <x-list.ride-status :ride="$ride" />
                         </td>
                         <td class="py-1 px-2 border text-center">{{ $ride->route_type->route_type }}</td>
                         <td class="py-1 px-2 border text-center route_name">{{ $ride->route_name }}</td>
-                        <td class="py-1 px-2 border text-center schedule_date">{{ CarbonImmutable::parse($ride->schedule_date)->isoFormat('YYYY年MM月DD日(ddd)') }}</td>
-                        <td class="py-1 px-2 border text-center">{{ $ride->user?->full_name }}</td>
-                        <td class="py-1 px-2 border text-center">{{ $ride->vehicle_category->vehicle_category }}</td>
                         <td class="py-1 px-2 border">
-                            <i class="las la-info-circle mr-1 la-lg tippy_vehicle_info" data-vehicle-name="{{ $ride->vehicle?->vehicle_name }}" data-vehicle-color="{{ $ride->vehicle?->vehicle_color }}" data-vehicle-number="{{ $ride->vehicle?->vehicle_number }}" data-vehicle-owner="{{ $ride->vehicle?->owner }}"></i>
-                            {{ $ride->vehicle?->vehicle_name }}
+                            @foreach($ride->confirmed_driver_candidates as $candidate)
+                                <div>
+                                    ・{{ $candidate->user->full_name }}
+                                    @if($candidate->vehicle)
+                                        / {{ $candidate->vehicle->vehicle_name }}
+                                    @endif
+                                </div>
+                            @endforeach
                         </td>
+                        <td class="py-1 px-2 border text-center">{{ $ride->vehicle_category->vehicle_category }}</td>
                         <td class="py-1 px-2 border">{{ $ride->ride_memo }}</td>
-                        <td class="py-1 px-2 border text-right">{{ number_format($ride->vehicle?->vehicle_capacity) }}</td>
+                        <td class="py-1 px-2 border text-right">{{ number_format($total_vehicle_capacity) }}</td>
                         <td class="py-1 px-2 border text-right">{{ number_format($ride->ride_details->sum(fn($detail) => $detail->ride_users->count())) }}</td>
-                        <td class="py-1 px-2 border text-right {{ $seats_remaining_class }}">{{ number_format($seats_remaining) }}</td>
+                        <td class="py-1 px-2 border text-center">
+                            @if($seats_remaining > 0)
+                                <span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-600">
+                                    余席 {{ $seats_remaining }}
+                                </span>
+                            @elseif($seats_remaining < 0)
+                                <span class="px-2 py-1 rounded-full text-xs font-bold bg-red-100 text-red-600">
+                                    超過 {{ abs($seats_remaining) }}
+                                </span>
+                            @else
+                                <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-600">
+                                    満席
+                                </span>
+                            @endif
+                        </td>
                         <td class="py-1 px-2 border">{{ CarbonImmutable::parse($ride->updated_at)->isoFormat('YYYY年MM月DD日(ddd) HH時mm分ss秒').'('.CarbonImmutable::parse($ride->updated_at)->diffForHumans().')' }}</td>
                     </tr>
                     <tr class="ride_detail_components hidden">

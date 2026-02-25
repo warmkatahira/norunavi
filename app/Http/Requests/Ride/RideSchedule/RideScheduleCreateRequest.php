@@ -17,10 +17,6 @@ class RideScheduleCreateRequest extends BaseRequest
 
     protected function prepareForValidation()
     {
-        // 送信されていない = 無効なので、0をパラメータにマージする
-        $this->merge([
-            'is_active' => $this->has('is_active') ? $this->input('is_active') : 0,
-        ]);
         // 送迎日を配列に変換
         if($this->filled('schedule_date')){
             $this->merge([
@@ -41,10 +37,8 @@ class RideScheduleCreateRequest extends BaseRequest
         return [
             'schedule_dates'        => 'required|array',
             'schedule_dates.*'      => 'required|date',
-            'driver_user_no'        => 'nullable|exists:users,user_no',
-            'use_vehicle_id'        => 'nullable|exists:vehicles,vehicle_id',
             'ride_memo'             => 'nullable|string|max:50',
-            'is_active'             => 'required|boolean',
+            'ride_status_id'        => 'required|exists:ride_statuses,ride_status_id',
         ];
     }
 

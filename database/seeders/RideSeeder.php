@@ -26,6 +26,7 @@ class RideSeeder extends Seeder
             'use_vehicle_id'        => 1,
             'ride_memo'             => 'test',
             'is_active'             => 1,
+            'ride_status_id'        => 2,
         ]);
         RideDetail::create([
             'ride_id'               => 1,
@@ -81,6 +82,7 @@ class RideSeeder extends Seeder
             'use_vehicle_id'        => 2,
             'ride_memo'             => null,
             'is_active'             => 1,
+            'ride_status_id'        => 2,
         ]);
         RideDetail::create([
             'ride_id'               => 2,
@@ -117,6 +119,7 @@ class RideSeeder extends Seeder
             'use_vehicle_id'        => 2,
             'ride_memo'             => '利用者いなければ運行なし',
             'is_active'             => 1,
+            'ride_status_id'        => 2,
         ]);
         RideDetail::create([
             'ride_id'               => 3,

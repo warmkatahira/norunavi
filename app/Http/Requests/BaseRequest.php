@@ -64,9 +64,8 @@ class BaseRequest extends FormRequest
             'schedule_date'         => '送迎日',
             'schedule_dates'        => '送迎日',
             'schedule_dates.*'      => '送迎日',
-            'driver_user_no'        => 'ドライバー',
-            'use_vehicle_id'        => '使用車両',
             'ride_memo'             => '送迎メモ',
+            'ride_status_id'        => '送迎ステータス',
             // ユーザー情報
             'user_no'               => 'ユーザー',
             'user_id'               => 'ユーザーID',

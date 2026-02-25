@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+// 列挙
+use App\Enums\DriverStatusEnum;
+
 class Ride extends BaseModel
 {
     // 主キーカラムを変更
@@ -18,6 +21,7 @@ class Ride extends BaseModel
         'use_vehicle_id',
         'ride_memo',
         'is_active',
+        'ride_status_id',
     ];
     // 有効なレコードを取得
     public function scopeActive($query)
@@ -49,6 +53,11 @@ class Ride extends BaseModel
     {
         return $this->belongsTo(User::class, 'driver_user_no', 'user_no');
     }
+    // ride_statusesテーブルとのリレーション
+    public function ride_status()
+    {
+        return $this->belongsTo(RideStatus::class, 'ride_status_id', 'ride_status_id');
+    }
     // ride_detailsテーブルとのリレーション
     public function ride_details()
     {
@@ -63,19 +72,18 @@ class Ride extends BaseModel
     public function confirmed_driver_candidates()
     {
         return $this->hasMany(RideDriverCandidate::class, 'ride_id', 'ride_id')
-                    ->where('driver_status_id', 2);
+                    ->where('driver_status_id', DriverStatusEnum::CONFIRMED);
     }
     // ダウンロード時のヘッダーを定義
     public static function downloadHeader()
     {
         return [
-            '運行状況',
+            '送迎日',
+            '送迎ステータス',
             'ルート区分',
             'ルート名',
-            '送迎日',
             'ドライバー',
             '車両種別',
-            '使用車両',
             '送迎メモ',
             '最終更新日時',
             '場所名',

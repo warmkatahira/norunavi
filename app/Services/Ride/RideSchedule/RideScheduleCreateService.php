@@ -24,10 +24,8 @@ class RideScheduleCreateService
                 'vehicle_category_id'   => $route->vehicle_category_id,
                 'schedule_date'         => $date,
                 'route_name'            => $route->route_name,
-                'driver_user_no'        => $request->driver_user_no,
-                'use_vehicle_id'        => $request->use_vehicle_id,
                 'ride_memo'             => $request->ride_memo,
-                'is_active'             => $request->is_active,
+                'ride_status_id'        => $request->ride_status_id,
             ]);
             // ルート詳細をもとに、今作成したrideに紐づくride_detailsの登録データをまとめて作成する
             $rideDetails = $route->route_details->map(function ($route_detail) use ($ride) {

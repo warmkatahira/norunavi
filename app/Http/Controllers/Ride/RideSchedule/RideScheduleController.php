@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // モデル
 use App\Models\RouteType;
+use App\Models\RideStatus;
 // サービス
 use App\Services\Ride\RideSchedule\RideScheduleSearchService;
 // トレイト
@@ -33,9 +34,12 @@ class RideScheduleController extends Controller
         $rides = $RideScheduleSearchService->getRequiredMinutes($rides);
         // ルート区分を取得
         $route_types = RouteType::ordered()->get();
+        // 送迎ステータスを取得
+        $ride_statuses = RideStatus::ordered()->get();
         return view('ride.ride_schedule.index')->with([
             'rides' => $rides,
             'route_types' => $route_types,
+            'ride_statuses' => $ride_statuses,
         ]);
     }
 }

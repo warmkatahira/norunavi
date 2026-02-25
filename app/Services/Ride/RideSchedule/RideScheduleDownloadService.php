@@ -29,6 +29,17 @@ class RideScheduleDownloadService
             $ride_schedule->chunk($chunk_size)->each(function ($ride_schedule) use ($handle) {
                 // ルートの分だけループ処理
                 foreach($ride_schedule as $ride){
+                    // ドライバーと使用車両を取得
+                    $drivers = $ride->confirmed_driver_candidates
+                                    ->map(function ($candidate) {
+                                        $name = $candidate->user->full_name ?? '';
+                                        $vehicle = $candidate->vehicle?->vehicle_name;
+
+                                        return $vehicle
+                                            ? "{$name} / {$vehicle}"
+                                            : $name;
+                                    })
+                                    ->join(' | ');
                     // ルート詳細の分だけループ処理
                     foreach($ride->ride_details as $ride_detail){
                         // 出発時刻を取得
@@ -55,13 +66,12 @@ class RideScheduleDownloadService
                         $users = $ride_detail->ride_users->pluck('user.full_name')->join(' / ');
                         // 変数に情報を格納
                         $row = [
-                            $ride->is_active_text,
+                            $ride->schedule_date,
+                            $ride->ride_status->ride_status,
                             $ride->route_type->route_type,
                             $ride->route_name,
-                            $ride->schedule_date,
-                            $ride->user->full_name,
+                            $drivers,
                             $ride->vehicle_category->vehicle_category,
-                            $ride->vehicle->vehicle_name,
                             $ride->ride_memo,
                             CarbonImmutable::parse($ride->updated_at)->isoFormat('Y年MM月DD日(ddd) HH:mm:ss'),
                             $ride_detail->location_name,
