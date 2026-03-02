@@ -8,7 +8,6 @@
                 <x-ride.ride-schedule.info-div label="ルート区分" :value="$ride->route_type->route_type" />
                 <x-ride.ride-schedule.info-div label="ルート名" :value="$ride->route_name" />
                 <x-ride.ride-schedule.info-div label="車両種別" :value="$ride->vehicle_category->vehicle_category" />
-                <x-ride.ride-schedule.info-div label="乗降場所数" :value="$ride->ride_details->count()" />
             </div>
             <form method="POST" action="{{ route('ride_driver_candidate_update.update') }}" id="ride_driver_candidate_form">
                 @csrf
