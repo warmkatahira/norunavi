@@ -32,6 +32,7 @@ export default defineConfig({
                 'resources/js/dashboard/driver_recruiting.js',
                 // 送迎
                 'resources/js/ride/ride_schedule/ride_schedule.js',
+                'resources/js/ride/ride_driver_candidate/ride_driver_candidate.js',
                 // 管理
                 'resources/js/admin/vehicle/vehicle.js',
                 'resources/js/admin/boarding_location/boarding_location.js',

@@ -49,8 +49,6 @@ class RideScheduleCreateRequest extends BaseRequest
 
     public function attributes()
     {
-        return array_merge(parent::attributes(), [
-            'is_active'      => '運行状況',
-        ]);
+        return parent::attributes();
     }
 }

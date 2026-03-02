@@ -45,6 +45,7 @@
                                     <button class="dropdown-operation-btn"><i class="las la-ellipsis-v la-lg"></i></button>
                                     <div class="dropdown-operation-content">
                                         <a href="{{ route('ride_schedule_update.index', ['ride_id' => $ride->ride_id]) }}" class="dropdown-operation-content-element"><i class="las la-edit la-lg mr-1"></i>送迎予定を更新</a>
+                                        <a href="{{ route('ride_driver_candidate_update.index', ['ride_id' => $ride->ride_id]) }}" class="dropdown-operation-content-element"><i class="las la-edit la-lg mr-1"></i>ドライバーを更新</a>
                                         <button type="button" class="dropdown-operation-content-element ride_schedule_delete_enter" data-ride-id="{{ $ride->ride_id }}"><i class="las la-trash la-lg mr-1"></i>削除</button>
                                     </div>
                                 </div>

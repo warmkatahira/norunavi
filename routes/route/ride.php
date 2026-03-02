@@ -8,6 +8,7 @@ use App\Http\Controllers\Ride\RideSchedule\RideScheduleCreateController;
 use App\Http\Controllers\Ride\RideSchedule\RideScheduleUpdateController;
 use App\Http\Controllers\Ride\RideSchedule\RideScheduleDeleteController;
 use App\Http\Controllers\Ride\RideSchedule\RideScheduleDownloadController;
+use App\Http\Controllers\Ride\RideDriverCandidate\RideDriverCandidateUpdateController;
 
 Route::middleware('common')->group(function (){
     Route::middleware(['system_admin_check'])->group(function () {
@@ -28,6 +29,10 @@ Route::middleware('common')->group(function (){
         });
         Route::controller(RideScheduleDownloadController::class)->prefix('ride_schedule_download')->name('ride_schedule_download.')->group(function(){
             Route::get('download', 'download')->name('download');
+        });
+        Route::controller(RideDriverCandidateUpdateController::class)->prefix('ride_driver_candidate_update')->name('ride_driver_candidate_update.')->group(function(){
+            Route::get('', 'index')->name('index');
+            Route::post('update', 'update')->name('update');
         });
     });
 });

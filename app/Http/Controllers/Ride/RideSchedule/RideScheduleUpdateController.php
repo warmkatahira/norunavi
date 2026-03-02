@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // モデル
 use App\Models\Ride;
-use App\Models\Vehicle;
-use App\Models\User;
 use App\Models\RideStatus;
 // サービス
 use App\Services\Ride\RideSchedule\RideScheduleUpdateService;
@@ -24,16 +22,10 @@ class RideScheduleUpdateController extends Controller
         session(['page_header' => '送迎予定更新']);
         // 送迎予定を取得
         $ride = Ride::byPk($request->ride_id)->with('ride_details.ride_users', 'route_type', 'vehicle_category', 'vehicle', 'user')->first();
-        // 車両を取得
-        $vehicles = Vehicle::active()->ofVehicleCategory($ride->vehicle_category_id)->ordered()->get();
-        // ドライバーユーザーを取得
-        $drivers = User::driverEligible()->active()->ordered()->get();
         // 送迎ステータスを取得
         $ride_statuses = RideStatus::ordered()->get();
         return view('ride.ride_schedule.update')->with([
             'ride' => $ride,
-            'vehicles' => $vehicles,
-            'drivers' => $drivers,
             'ride_statuses' => $ride_statuses,
         ]);
     }

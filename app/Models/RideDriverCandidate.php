@@ -25,4 +25,9 @@ class RideDriverCandidate extends BaseModel
     {
         return $this->belongsTo(Vehicle::class, 'use_vehicle_id', 'vehicle_id');
     }
+    // driver_statusesテーブルとのリレーション
+    public function driver_status()
+    {
+        return $this->belongsTo(DriverStatus::class, 'driver_status_id', 'driver_status_id');
+    }
 }

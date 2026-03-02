@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Ride\RideSchedule;
+namespace App\Http\Requests\Ride\RideDriverCandidate;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\BaseRequest;
 
-class RideScheduleUpdateRequest extends BaseRequest
+class RideDriverCandidateUpdateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,9 @@ class RideScheduleUpdateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'ride_id'               => 'required|exists:rides,ride_id',
-            'route_name'            => 'required|string|max:20',
-            'schedule_date'         => 'required|date',
-            'ride_memo'             => 'nullable|string|max:50',
-            'ride_status_id'        => 'required|exists:ride_statuses,ride_status_id',
+            'ride_driver_candidate_id.*'    => 'required|exists:ride_driver_candidates,ride_driver_candidate_id',
+            'use_vehicle_id.*'              => 'nullable|exists:vehicles,vehicle_id',
+            'driver_status_id.*'            => 'required|exists:driver_statuses,driver_status_id',
         ];
     }
 
