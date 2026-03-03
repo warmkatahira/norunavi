@@ -173,6 +173,7 @@ class RideSeeder extends Seeder
             'ride_id'   => 3,
             'user_no'   => 2,
             'driver_status_id'  => 2,
+            'driver_memo' => 'メモです。',
         ]);
     }
 }

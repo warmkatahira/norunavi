@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('user_no');
             $table->unsignedInteger('use_vehicle_id')->nullable();
             $table->unsignedInteger('driver_status_id');
+            $table->string('driver_memo', 20)->nullable();
             $table->timestamps();
             // 外部キー
             $table->foreign('ride_id')->references('ride_id')->on('rides')->cascadeOnUpdate()->cascadeOnDelete();

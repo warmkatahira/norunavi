@@ -41,5 +41,9 @@
             @endforeach
         </div>
     </div>
+    <div class="flex flex-col bg-white py-2 px-3">
+        <label class="text-gray-800 py-2.5 pl-3">ドライバー</label>
+        <input type="text" name="driver_memo[{{ $rideDriverCandidate->ride_driver_candidate_id }}]" class="pl-3 w-full text-sm py-2.5 border border-gray-400" value="{{ old('driver_memo.' . $rideDriverCandidate->ride_driver_candidate_id, $rideDriverCandidate->driver_memo) }}">
+    </div>
 </div>
 <input type="hidden" name="ride_driver_candidate_id[{{ $rideDriverCandidate->ride_driver_candidate_id }}]" value="{{ $rideDriverCandidate->ride_driver_candidate_id }}">

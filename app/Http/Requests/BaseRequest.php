@@ -69,6 +69,7 @@ class BaseRequest extends FormRequest
             'ride_driver_candidate_id.*'    => 'ドライバー',
             'use_vehicle_id.*'              => '使用車両',
             'driver_status_id.*'            => 'ドライバーステータス',
+            'driver_memo.*'                 => 'ドライバーメモ',
             // ユーザー情報
             'user_no'               => 'ユーザー',
             'user_id'               => 'ユーザーID',

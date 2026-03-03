@@ -14,6 +14,7 @@ class RideDriverCandidate extends BaseModel
         'user_no',
         'use_vehicle_id',
         'driver_status_id',
+        'driver_memo',
     ];
     // usersテーブルとのリレーション
     public function user()

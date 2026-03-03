@@ -28,6 +28,7 @@ class RideDriverCandidateUpdateRequest extends BaseRequest
             'ride_driver_candidate_id.*'    => 'required|exists:ride_driver_candidates,ride_driver_candidate_id',
             'use_vehicle_id.*'              => 'nullable|exists:vehicles,vehicle_id',
             'driver_status_id.*'            => 'required|exists:driver_statuses,driver_status_id',
+            'driver_memo.*'                 => 'nullable|string|max:20',
         ];
     }
 
