@@ -2,48 +2,41 @@
     'rideDriverCandidate',
     'vehicles',
     'driverStatuses',
+    'drivers',
+    'index'
 ])
 
-<div class="col-span-3 flex flex-col border border-gray-400 divide-y divide-gray-400 mb-2">
+<div class="ride_driver_candidate_div col-span-3 flex flex-col border border-gray-400 divide-y divide-gray-400 mb-2">
     <div class="flex flex-col bg-white py-2 px-3">
-        <label class="text-gray-800 py-2.5 pl-3">ドライバー</label>
-        <p class="pl-3 w-full border border-gray-400 text-sm py-2.5 bg-gray-200">{{ $rideDriverCandidate->user->full_name }}</p>
+        <label class="text-gray-800 py-2.5 pl-3 relative">ドライバー</label>
+        <select class="w-full text-sm border border-gray-400 bg-gray-200" disabled>
+            <option value=""></option>
+            @foreach($drivers as $driver)
+                <option value="{{ $driver->user_no }}" @selected((string)old("user_no.{$index}", $rideDriverCandidate->user_no) === (string)$driver->user_no)>{{ $driver->full_name }}</option>
+            @endforeach
+        </select>
+        <input type="hidden" name="user_no[]" value="{{ $rideDriverCandidate->user_no }}">
     </div>
     <div class="flex flex-col bg-white py-2 px-3">
         <label class="text-gray-800 py-2.5 pl-3 relative">使用車両</label>
-        <select name="use_vehicle_id[{{ $rideDriverCandidate->ride_driver_candidate_id }}]" class="w-full text-sm border border-gray-400">
+        <select name="use_vehicle_id[]" class="w-full text-sm border border-gray-400">
             <option value=""></option>
             @foreach($vehicles as $vehicle)
-                <option value="{{ $vehicle->vehicle_id }}" @selected((string)old("use_vehicle_id.{$rideDriverCandidate->ride_driver_candidate_id}", $rideDriverCandidate->use_vehicle_id) === (string)$vehicle->vehicle_id)>{{ $vehicle->vehicle_name }}</option>
+                <option value="{{ $vehicle->vehicle_id }}" @selected((string)old("use_vehicle_id.{$index}", $rideDriverCandidate->use_vehicle_id) === (string)$vehicle->vehicle_id)>{{ $vehicle->vehicle_name }}</option>
             @endforeach
         </select>
     </div>
     <div class="flex flex-col bg-white py-2 px-3">
         <label class="text-gray-800 py-2.5 pl-3 relative">ドライバーステータス</label>
-        <div class="flex flex-wrap gap-3">
+        <select name="driver_status_id[]" class="w-full text-sm border border-gray-400">
+            <option value=""></option>
             @foreach($driverStatuses as $driver_status)
-                <label class="cursor-pointer">
-                    <input 
-                        type="radio"
-                        name="driver_status_id[{{ $rideDriverCandidate->ride_driver_candidate_id }}]"
-                        value="{{ $driver_status->driver_status_id }}"
-                        class="hidden peer"
-                        @checked(
-                            old("driver_status_id.{$rideDriverCandidate->ride_driver_candidate_id}", 
-                                $rideDriverCandidate->driver_status_id
-                            ) == $driver_status->driver_status_id
-                        )
-                    >
-                    <span class="px-4 py-1 border text-sm peer-checked:bg-theme-main peer-checked:text-white peer-checked:border-theme-main hover:bg-gray-100 border-black">
-                        {{ $driver_status->driver_status }}
-                    </span>
-                </label>
+                <option value="{{ $driver_status->driver_status_id }}" @selected((string)old("driver_status_id.{$index}", $rideDriverCandidate->driver_status_id) === (string)$driver_status->driver_status_id)>{{ $driver_status->driver_status }}</option>
             @endforeach
-        </div>
+        </select>
     </div>
     <div class="flex flex-col bg-white py-2 px-3">
-        <label class="text-gray-800 py-2.5 pl-3">ドライバー</label>
-        <input type="text" name="driver_memo[{{ $rideDriverCandidate->ride_driver_candidate_id }}]" class="pl-3 w-full text-sm py-2.5 border border-gray-400" value="{{ old('driver_memo.' . $rideDriverCandidate->ride_driver_candidate_id, $rideDriverCandidate->driver_memo) }}">
+        <label class="text-gray-800 py-2.5 pl-3">ドライバーメモ</label>
+        <input type="text" name="driver_memo[]" class="pl-3 w-full text-sm py-2.5 border border-gray-400" value='{{ old("driver_memo.{$index}", $rideDriverCandidate->driver_memo) }}' autocomplete="off">
     </div>
 </div>
-<input type="hidden" name="ride_driver_candidate_id[{{ $rideDriverCandidate->ride_driver_candidate_id }}]" value="{{ $rideDriverCandidate->ride_driver_candidate_id }}">

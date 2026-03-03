@@ -9,11 +9,14 @@
                 <x-ride.ride-schedule.info-div label="ルート名" :value="$ride->route_name" />
                 <x-ride.ride-schedule.info-div label="車両種別" :value="$ride->vehicle_category->vehicle_category" />
             </div>
+            <div class="flex mt-3">
+                <button id="add_ride_driver_candidate_btn" type="button" class="btn bg-green-600 text-white p-3 ml-left"><i class="las la-plus la-lg mr-1"></i>ドライバー追加</button>
+            </div>
             <form method="POST" action="{{ route('ride_driver_candidate_update.update') }}" id="ride_driver_candidate_form">
                 @csrf
-                <div class="grid grid-cols-12 gap-3">
-                    @foreach($ride->ride_driver_candidates as $ride_driver_candidate)
-                        <x-ride.ride-driver-candidate.update-div :rideDriverCandidate="$ride_driver_candidate" :vehicles="$vehicles" :driverStatuses="$driver_statuses" />
+                <div id="ride_driver_candidate_wrapper" class="grid grid-cols-12 gap-3">
+                    @foreach($ride->ride_driver_candidates as $index => $ride_driver_candidate)
+                        <x-ride.ride-driver-candidate.update-div :index="$index" :rideDriverCandidate="$ride_driver_candidate" :vehicles="$vehicles" :driverStatuses="$driver_statuses" :drivers="$drivers" />
                     @endforeach
                 </div>
                 <input type="hidden" name="ride_id" value="{{ $ride->ride_id }}">

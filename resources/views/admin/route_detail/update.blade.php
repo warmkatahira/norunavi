@@ -1,20 +1,20 @@
 <x-app-layout>
     <x-page-back :url="session('back_url_1')" />
-    <div class="p-6 bg-yellow-100 rounded-lg mt-4 shadow-sm">
-        <dl class="space-y-4">
+    <div class="flex flex-col gap-3 mt-5">
+        <div class="flex flex-col gap-3 w-1/2 bg-white p-3 border border-gray-400">
             <x-admin.route-detail.info-div label="ルート区分" :value="$route->route_type->route_type" />
             <x-admin.route-detail.info-div label="車両種別" :value="$route->vehicle_category->vehicle_category" />
             <x-admin.route-detail.info-div label="ルート名" :value="$route->route_name" />
-        </dl>
+        </div>
     </div>
     <div class="flex mt-3">
-        <button id="add_route_detail_btn" type="button" class="btn bg-green-600 text-white p-3 ml-auto"><i class="las la-plus la-lg mr-1"></i>ルート詳細追加</button>
+        <button id="add_route_detail_btn" type="button" class="btn bg-green-600 text-white p-3 ml-left"><i class="las la-plus la-lg mr-1"></i>ルート詳細追加</button>
     </div>
     <form method="POST" action="{{ route('route_detail_update.update') }}" id="route_detail_update_form">
         @csrf
         <div id="route_detail_wrapper">
-            @foreach ($route->route_details as $index => $route_detail)
-                <div class="route_detail_div p-5 bg-white rounded-lg mt-3">
+            @foreach($route->route_details as $index => $route_detail)
+                <div class="route_detail_div p-5 bg-white mt-3">
                     <div class="flex justify-between items-center">
                         <p class="text-base">ルート詳細 {{ $index + 1 }}</p>
                     </div>
@@ -29,7 +29,7 @@
                 </div>
             @endforeach
             @if ($route->route_details->isEmpty())
-                <div class="route_detail_div p-5 bg-white rounded-lg mt-3">
+                <div class="route_detail_div p-5 bg-white mt-3">
                     <div class="flex justify-between items-center">
                         <p class="text-base">ルート詳細 1</p>
                     </div>

@@ -32,6 +32,7 @@ Route::middleware('common')->group(function (){
         });
         Route::controller(RideDriverCandidateUpdateController::class)->prefix('ride_driver_candidate_update')->name('ride_driver_candidate_update.')->group(function(){
             Route::get('', 'index')->name('index');
+            Route::get('ajax_validation', 'ajax_validation');
             Route::post('update', 'update')->name('update');
         });
     });

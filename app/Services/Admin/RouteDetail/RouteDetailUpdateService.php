@@ -30,8 +30,8 @@ class RouteDetailUpdateService
                 'route_id'              => $route_id,
                 'boarding_location_id'  => $boarding_location_ids[$index],
                 'stop_order'            => $stop_orders[$index],
-                'departure_time'        => $departure_times[$index],
-                'arrival_time'          => $arrival_times[$index],
+                'departure_time'        => $departure_times[$index] ?? null,
+                'arrival_time'          => $arrival_times[$index] ?? null,
             ]);
         }
     }

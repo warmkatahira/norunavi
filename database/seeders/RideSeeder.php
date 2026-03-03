@@ -158,11 +158,6 @@ class RideSeeder extends Seeder
             'use_vehicle_id'    => 1,
             'driver_status_id'  => 3,
         ]);
-        RideDriverCandidate::create([
-            'ride_id'           => 2,
-            'user_no'           => 3,
-            'driver_status_id'  => 1,
-        ]);
 
         RideDriverCandidate::create([
             'ride_id'           => 3,
