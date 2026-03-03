@@ -64,7 +64,6 @@ function collectValidationData()
     };
 }
 
-let newIndex = 1;
 // ドライバー追加処理
 $('#add_ride_driver_candidate_btn').on('click', function () {
     // 最後にあるride_driver_candidate_divを取得して複製

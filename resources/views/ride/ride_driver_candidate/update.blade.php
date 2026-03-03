@@ -18,6 +18,9 @@
                     @foreach($ride->ride_driver_candidates as $index => $ride_driver_candidate)
                         <x-ride.ride-driver-candidate.update-div :index="$index" :rideDriverCandidate="$ride_driver_candidate" :vehicles="$vehicles" :driverStatuses="$driver_statuses" :drivers="$drivers" />
                     @endforeach
+                    @if($ride->ride_driver_candidates->isEmpty())
+                        <x-ride.ride-driver-candidate.update-div :vehicles="$vehicles" :driverStatuses="$driver_statuses" :drivers="$drivers" />
+                    @endif
                 </div>
                 <input type="hidden" name="ride_id" value="{{ $ride->ride_id }}">
                 <button type="button" id="ride_driver_candidate_update_enter" class="btn bg-btn-enter p-3 text-white w-56 ml-auto mt-3"><i class="las la-check la-lg mr-1"></i>更新</button>
