@@ -96,3 +96,8 @@ $('#add_ride_driver_candidate_btn').on('click', function () {
     // 一番後ろに追加
     $('#ride_driver_candidate_wrapper').append($clone);
 });
+
+// 削除処理
+$(document).on('click', '#delete_ride_driver_candidate_btn', function () {
+    $(this).closest('.ride_driver_candidate_div').remove();
+});

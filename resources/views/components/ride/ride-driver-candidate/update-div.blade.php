@@ -6,8 +6,9 @@
     'index'
 ])
 
-<div class="ride_driver_candidate_div col-span-3 flex flex-col border border-gray-400 divide-y divide-gray-400 mb-2">
+<div class="ride_driver_candidate_div col-span-3 flex flex-col border border-gray-400 divide-y divide-gray-400 mb-2 bg-white">
     <div class="flex flex-col bg-white py-2 px-3">
+        <button id="delete_ride_driver_candidate_btn" type="button" class="btn bg-btn-cancel text-white px-2 py-0.5 ml-auto">削除</button>
         <label class="text-gray-800 py-2.5 pl-3 relative">ドライバー</label>
         <select class="w-full text-sm border border-gray-400 bg-gray-200" disabled>
             <option value=""></option>
