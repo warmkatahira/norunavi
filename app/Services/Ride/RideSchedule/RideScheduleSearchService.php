@@ -20,7 +20,6 @@ class RideScheduleSearchService
             'search_route_type_id',
             'search_schedule_date_from',
             'search_schedule_date_to',
-            'search_driver_status',
         ]);
     }
 
@@ -40,7 +39,6 @@ class RideScheduleSearchService
             session(['search_route_type_id' => $request->search_route_type_id]);
             session(['search_schedule_date_from' => $request->search_schedule_date_from]);
             session(['search_schedule_date_to' => $request->search_schedule_date_to]);
-            session(['search_driver_status' => $request->search_driver_status]);
         }
     }
 
@@ -64,18 +62,8 @@ class RideScheduleSearchService
             $query = $query->whereDate('schedule_date', '>=', session('search_schedule_date_from'))
                             ->whereDate('schedule_date', '<=', session('search_schedule_date_to'));
         }
-        // ドライバーの条件がある場合
-        if(session('search_driver_status') != null){
-            // 「確定」の場合
-            if(session('search_driver_status')){
-                $query = $query->whereNotNull('driver_user_no');
-            // 「未定」の場合
-            }elseif(!session('search_driver_status')){
-                $query = $query->whereNull('driver_user_no');
-            }
-        }
         // 並び替えを実施
-        return $query->orderBy('schedule_date', 'asc')->orderBy('ride_id', 'asc');
+        return $query->orderBy('schedule_date', 'asc')->orderBy('route_type_id', 'asc')->orderBy('ride_id', 'asc');
     }
 
     // 所要時間を取得
