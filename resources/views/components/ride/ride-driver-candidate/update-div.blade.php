@@ -6,11 +6,11 @@
     'index' => null,
 ])
 
-<div class="ride_driver_candidate_div col-span-3 flex flex-col border border-gray-400 divide-y divide-gray-400 mb-2 bg-white">
+<div class="ride_driver_candidate_div col-span-3 flex flex-col border border-gray-400 divide-y divide-gray-400 mb-2 bg-white" data-initial-user-no="{{ $rideDriverCandidate?->user_no ?? '' }}">
     <div class="flex flex-col bg-white py-2 px-3">
         <button id="delete_ride_driver_candidate_btn" type="button" class="btn bg-btn-cancel text-white px-2 py-0.5 ml-auto">削除</button>
         <label class="text-gray-800 py-2.5 pl-3 relative">ドライバー</label>
-        <select {{ $rideDriverCandidate ? '' : 'name=user_no[]' }} class="w-full text-sm border border-gray-400 {{ $rideDriverCandidate ? 'bg-gray-200' : '' }}" {{ $rideDriverCandidate ? 'disabled' : '' }}>
+        <select {{ $rideDriverCandidate ? '' : 'name=user_no[]' }} class="driver_select w-full text-sm border border-gray-400 {{ $rideDriverCandidate ? 'bg-gray-200' : '' }}" {{ $rideDriverCandidate ? 'disabled' : '' }}>
             <option value=""></option>
             @foreach($drivers as $driver)
                 <option value="{{ $driver->user_no }}" @selected((string)old("user_no.{$index}", $rideDriverCandidate?->user_no) === (string)$driver->user_no)>{{ $driver->full_name }}</option>
@@ -22,10 +22,10 @@
     </div>
     <div class="flex flex-col bg-white py-2 px-3">
         <label class="text-gray-800 py-2.5 pl-3 relative">使用車両</label>
-        <select name="use_vehicle_id[]" class="w-full text-sm border border-gray-400">
+        <select name="use_vehicle_id[]" class="vehicle_select w-full text-sm border border-gray-400">
             <option value=""></option>
             @foreach($vehicles as $vehicle)
-                <option value="{{ $vehicle->vehicle_id }}" @selected((string)old("use_vehicle_id.{$index}", $rideDriverCandidate?->use_vehicle_id) === (string)$vehicle->vehicle_id)>{{ $vehicle->vehicle_name }}</option>
+                <option value="{{ $vehicle->vehicle_id }}" data-user-no="{{ $vehicle->user_no ?? '' }}" @selected((string)old("use_vehicle_id.{$index}", $rideDriverCandidate?->use_vehicle_id) === (string)$vehicle->vehicle_id)>{{ $vehicle->vehicle_info }}</option>
             @endforeach
         </select>
     </div>

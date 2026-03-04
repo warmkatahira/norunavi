@@ -25,6 +25,11 @@ class Vehicle extends BaseModel
     {
         return $query->orderBy('vehicle_id', 'asc');
     }
+    // vehicle_type_idで並び替えて取得
+    public function scopeOrderedByVehicleTypeId($query, string $direction = 'asc')
+    {
+        return $query->orderBy('vehicle_type_id', $direction);
+    }
     // 有効なレコードを取得
     public function scopeActive($query)
     {
@@ -63,7 +68,7 @@ class Vehicle extends BaseModel
     // 車両情報の文字列を返すアクセサ
     public function getVehicleInfoAttribute()
     {
-        return $this->vehicle_name.' / '.$this->vehicle_color.' / '.$this->vehicle_number. '（所有：' . $this->owner . '）';
+        return $this->vehicle_name.' | '.$this->vehicle_color.' | '.$this->vehicle_number. ' | 所有：' . $this->owner;
     }
     // ダウンロード時のヘッダーを定義
     public static function downloadHeader()

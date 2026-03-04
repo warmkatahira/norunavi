@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-BH2j-ziF.css",
+    "file": "assets/app-Bx0Tvxay.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -125,7 +125,7 @@
     ]
   },
   "resources/js/ride/ride_driver_candidate/ride_driver_candidate.js": {
-    "file": "assets/ride_driver_candidate-CFe22w-X.js",
+    "file": "assets/ride_driver_candidate-DqW2Ny9e.js",
     "name": "ride_driver_candidate",
     "src": "resources/js/ride/ride_driver_candidate/ride_driver_candidate.js",
     "isEntry": true,
@@ -134,7 +134,7 @@
     ]
   },
   "resources/js/ride/ride_schedule/ride_schedule.js": {
-    "file": "assets/ride_schedule-DhR8nq6L.js",
+    "file": "assets/ride_schedule-D3r0AtAJ.js",
     "name": "ride_schedule",
     "src": "resources/js/ride/ride_schedule/ride_schedule.js",
     "isEntry": true,

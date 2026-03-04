@@ -25,7 +25,7 @@ class RideDriverCandidateUpdateController extends Controller
         // 送迎予定を取得
         $ride = Ride::byPk($request->ride_id)->with(['ride_driver_candidates.user', 'ride_driver_candidates.vehicle', 'ride_driver_candidates.driver_status'])->first();
         // 車両を取得
-        $vehicles = Vehicle::active()->ofVehicleCategory($ride->vehicle_category_id)->get();
+        $vehicles = Vehicle::active()->ofVehicleCategory($ride->vehicle_category_id)->orderedByVehicleTypeId()->get();
         // ドライバーステータスを取得
         $driver_statuses = DriverStatus::ordered()->get();
         // ドライバーを取得

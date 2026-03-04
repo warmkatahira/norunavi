@@ -100,3 +100,47 @@ $('#add_ride_driver_candidate_btn').on('click', function () {
 $(document).on('click', '#delete_ride_driver_candidate_btn', function () {
     $(this).closest('.ride_driver_candidate_div').remove();
 });
+
+// フィルタリング関数として切り出す
+function filterVehicleOptions($vehicleSelect, selectedUserNo) {
+    $vehicleSelect.find('option').each(function () {
+        const optionUserNo = $(this).data('user-no');
+        if (
+            $(this).val() === '' ||
+            optionUserNo === '' ||
+            optionUserNo === null ||
+            optionUserNo === undefined ||
+            String(optionUserNo) === String(selectedUserNo)
+        ) {
+            $(this).show().prop('disabled', false);
+        } else {
+            $(this).hide().prop('disabled', true);
+        }
+    });
+}
+
+// ページ読み込み時：既存コンポーネントに適用
+$(function () {
+    $('.ride_driver_candidate_div').each(function () {
+        const initialUserNo = $(this).data('initial-user-no');
+        if (initialUserNo !== '') {
+            const $vehicleSelect = $(this).find('.vehicle_select');
+            filterVehicleOptions($vehicleSelect, initialUserNo);
+        }
+    });
+});
+
+// ドライバー変更時
+$(document).on('change', '.driver_select', function () {
+    const selectedUserNo = $(this).val();
+    const $vehicleSelect = $(this).closest('.ride_driver_candidate_div').find('.vehicle_select');
+
+    filterVehicleOptions($vehicleSelect, selectedUserNo);
+
+    const $matchedOption = $vehicleSelect.find(`option[data-user-no="${selectedUserNo}"]:not(:disabled)`);
+    if ($matchedOption.length) {
+        $vehicleSelect.val($matchedOption.val());
+    } else {
+        $vehicleSelect.val('');
+    }
+});

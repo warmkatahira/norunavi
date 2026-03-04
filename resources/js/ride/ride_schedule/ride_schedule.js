@@ -84,22 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// 車両情報のツールチップ
-tippy('.tippy_vehicle_info', {
-    content(reference) {
-        const vehicleName = reference.getAttribute('data-vehicle-name') || '';
-        const vehicleColor = reference.getAttribute('data-vehicle-color') || '';
-        const vehicleNumber = reference.getAttribute('data-vehicle-number') || '';
-        const vehicleOwner = reference.getAttribute('data-vehicle-owner') || '';
-        return "所有者：" + vehicleOwner + "<br>車両名：" + vehicleName + "<br>車両色：" + vehicleColor + "<br>車両ナンバー：" + vehicleNumber;
-    },
-    duration: 500,
-    maxWidth: 'none',
-    allowHTML: true,
-    placement: 'right',
-    theme: 'tippy_main_theme',
-});
-
 // 利用者のツールチップ
 tippy('.tippy_ride_user', {
     content(reference) {

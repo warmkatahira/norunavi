@@ -34,7 +34,7 @@
                         <td class="py-1 px-2 border">{{ $vehicle->vehicle_color }}</td>
                         <td class="py-1 px-2 border text-center">{{ $vehicle->vehicle_number }}</td>
                         <td class="py-1 px-2 border text-right">{{ $vehicle->vehicle_capacity }}</td>
-                        <td class="py-1 px-2 border text-right">{{ $vehicle->vehicle_memo }}</td>
+                        <td class="py-1 px-2 border">{{ $vehicle->vehicle_memo }}</td>
                         <td class="py-1 px-2 border">{{ CarbonImmutable::parse($vehicle->updated_at)->isoFormat('YYYY年MM月DD日(ddd) HH時mm分ss秒').'('.CarbonImmutable::parse($vehicle->updated_at)->diffForHumans().')' }}</td>
                     </tr>
                 @endforeach
